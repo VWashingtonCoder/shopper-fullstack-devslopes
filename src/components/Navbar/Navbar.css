@@ -1,0 +1,41 @@
+.nav-top {
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: cornflowerblue;
+}
+
+.nav-head {
+    font-size: 30px;
+}
+
+.icon.games {
+    color: blue;
+}
+
+.nav-menu {
+    width: 35rem;
+    justify-content: space-around;
+    position: relative;
+}
+
+.nav-menu .nav-btn {
+    font-size: 24px;
+}
+
+.nav-bottom {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    background-color: cornsilk;
+}
+
+.nav-bottom .nav-btn {
+    font-size: 28px;
+}
+
+.nav-bottom .nav-btn:hover {
+    color: red;
+}
