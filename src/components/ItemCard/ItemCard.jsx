@@ -27,6 +27,7 @@ const ItemCard = (props) => {
             Add To Cart
           </button>
         </div>
+        <button className="more-btn">See More Info</button>
       </div>
     </div>
   );
