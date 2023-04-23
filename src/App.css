@@ -11,7 +11,19 @@
   pointer-events: none;
 }
 
-.nav-btn {
+.nav-btn,
+.info-btn {
   background: transparent;
   border: none;
+}
+
+.add-btn {
+  padding: 6px;
+  border: 1px solid black;
+  background-color: aqua;
+  font-weight: 600;
+}
+
+.hide {
+  display: none;
 }

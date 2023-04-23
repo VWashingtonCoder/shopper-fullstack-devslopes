@@ -100,7 +100,7 @@ const ShopperApp = () => {
       />
       {states.page === "home" && (
         <Homepage 
-            stock={stock} 
+            products={products} 
             stockQty={stockQtys}
             addToCart={addToCart}
             updateQty={updateStockQtys} 

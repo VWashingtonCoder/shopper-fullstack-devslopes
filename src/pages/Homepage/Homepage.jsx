@@ -2,7 +2,7 @@ import "./Homepage.css";
 import ItemCard from "../../components/ItemCard/ItemCard";
 
 const Homepage = (props) => {
-    const { stock, stockQty, addToCart, updateQty } = props;
+    const { products, stockQty, addToCart, updateQty } = props;
 
     return (
         <div id="Homepage">
@@ -10,7 +10,7 @@ const Homepage = (props) => {
 
             </div>
             <div className="products-grid">
-                {stock.map(item => 
+                {products.map(item => 
                     <ItemCard 
                         key={item.key} 
                         item={item}

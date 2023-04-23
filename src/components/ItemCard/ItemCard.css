@@ -1,0 +1,55 @@
+#ItemCard {
+  max-width: 300px;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 30px;
+}
+
+.card-img-container {
+  max-width: 250px;
+  height: 300px;
+  margin: auto;
+}
+
+.card-info {
+  margin-top: 7px;
+}
+
+.info.category {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.info-btn.prod-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.info-btn.prod-name:hover {
+  color: blue;
+}
+
+.info.price {
+  font-size: 20px;
+  font-weight: 500;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.buy-container {
+  justify-content: center;
+}
+
+#cardQty {
+  height: 35px;
+  width: 55px;
+  padding-left: 5px;
+  font-size: 18px;
+}
+
+.buy-container .add-btn {
+  font-size: 18px;
+  margin-left: 10px;
+}

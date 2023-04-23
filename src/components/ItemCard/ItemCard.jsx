@@ -7,16 +7,22 @@ const ItemCard = (props) => {
   const qtyArr = generateStockArr(stockQty);
 
   return (
-    <div id="ItemCard" className="flex-align-center">
+    <div id="ItemCard">
       <div className="card-img-container">
         <img src={imgSrc} alt="Product Item" />
       </div>
       <div className="card-info">
         <p className="info category">{category}</p>
-        <p className="info prod-name">{prodName}</p>
-        <div className="info-container">
-          <span className="info price">${price}</span>
-          <select name={key} className="cardQty" onChange={updateQty} value={itemQty}>
+        <button className="info-btn prod-name">{prodName}</button>
+        <p className="info price">${price}</p>
+
+        <div className="buy-container flex-align-center">
+          <select
+            name={key}
+            id="cardQty"
+            onChange={updateQty}
+            value={itemQty}
+          >
             {qtyArr.map((num) => (
               <option key={num} value={num}>
                 {num}
@@ -27,7 +33,6 @@ const ItemCard = (props) => {
             Add To Cart
           </button>
         </div>
-        <button className="more-btn">See More Info</button>
       </div>
     </div>
   );
