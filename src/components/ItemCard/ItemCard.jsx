@@ -2,7 +2,7 @@ import "./ItemCard.css";
 import { generateStockArr } from "../helpers";
 
 const ItemCard = (props) => {
-  const { item, itemQty, addToCart, updateQty } = props;
+  const { item, itemQty, addToCart, displayInfo, updateQty } = props;
   const { category, imgSrc, key, price, prodName, stockQty } = item;
   const qtyArr = generateStockArr(stockQty);
 
@@ -13,16 +13,13 @@ const ItemCard = (props) => {
       </div>
       <div className="card-info">
         <p className="info category">{category}</p>
-        <button className="info-btn prod-name">{prodName}</button>
+        <button className="info-btn prod-name" value={key} onClick={displayInfo}>
+          {prodName}
+        </button>
         <p className="info price">${price}</p>
 
         <div className="buy-container flex-align-center">
-          <select
-            name={key}
-            id="cardQty"
-            onChange={updateQty}
-            value={itemQty}
-          >
+          <select name={key} id="cardQty" onChange={updateQty} value={itemQty}>
             {qtyArr.map((num) => (
               <option key={num} value={num}>
                 {num}
