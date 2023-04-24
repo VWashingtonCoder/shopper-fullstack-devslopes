@@ -16,6 +16,7 @@ class ProductService {
           const data = json.data.map((product) => {
             const prodInfo = product.description;
             const infoText = prodInfo.slice(3, prodInfo.length - 4);
+
             return {
               key: product.id,
               category: product.categories[0].name,
@@ -24,7 +25,7 @@ class ProductService {
               price: product.price.raw,
               prodName: product.name,
               stockQty: product.inventory.available,
-            }
+            };
           });
           success({ resp, data });
         } else {

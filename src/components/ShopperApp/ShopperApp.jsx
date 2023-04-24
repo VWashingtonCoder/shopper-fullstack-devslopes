@@ -6,20 +6,10 @@ import Navbar from "../Navbar/Navbar";
 import Homepage from "../../pages/Homepage/Homepage";
 
 const stockItems = new ProductService();
-const initStates = {
-  accounts: [{ id: 0, username: "admin", pw: "Password$1" }],
-  activeAccount: {},
-  cart: [],
-  page: "home",
-  payCard: {},
-  products: [],
-  shipAddress: {},
-  stock: [],
-};
+const initAccounts = [{ id: 0, username: "admin", pw: "Password$1" }];
 
 const ShopperApp = () => {
-  const [states, setStates] = useState(initStates);
-  const [accounts, setAccounts] = useState(initStates.accounts);
+  const [accounts, setAccounts] = useState(initAccounts);
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState("home");
@@ -46,26 +36,26 @@ const ShopperApp = () => {
 
   const addToCart = (e) => {
     const key = e.target.value;
-    const product = products.find(item => item.key === key);
-    const cartProductIdx = cart.findIndex(item => item.key === key);
+    const product = products.find((item) => item.key === key);
+    const cartProductIdx = cart.findIndex((item) => item.key === key);
     let newCartItem = {};
 
     if (cartProductIdx === -1) {
-        newCartItem = {
-            key: product.key,
-            name: product.prodName,
-            category: product.category,
-            imgSrc: product.imgSrc,
-            price: product.price,
-            qty: stockQtys[key]
-        }
-        setCart([ ...cart, newCartItem ]);
+      newCartItem = {
+        key: product.key,
+        name: product.prodName,
+        category: product.category,
+        imgSrc: product.imgSrc,
+        price: product.price,
+        qty: stockQtys[key],
+      };
+      setCart([...cart, newCartItem]);
     } else {
-       const newCart = cart.map(item => {
-        if(item.key === key) item.qty = stockQtys[key];
+      const newCart = cart.map((item) => {
+        if (item.key === key) item.qty = stockQtys[key];
         return item;
-       })
-       setCart(newCart);
+      });
+      setCart(newCart);
     }
   };
 
@@ -99,11 +89,11 @@ const ShopperApp = () => {
         filter={filterProducts}
       />
       {states.page === "home" && (
-        <Homepage 
-            products={products} 
-            stockQty={stockQtys}
-            addToCart={addToCart}
-            updateQty={updateStockQtys} 
+        <Homepage
+          products={products}
+          stockQty={stockQtys}
+          addToCart={addToCart}
+          updateQty={updateStockQtys}
         />
       )}
     </div>

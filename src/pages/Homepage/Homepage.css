@@ -1,9 +1,8 @@
 #Homepage {
-    margin: auto;
+  margin: auto;
 }
 
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
-

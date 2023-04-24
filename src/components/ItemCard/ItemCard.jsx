@@ -13,7 +13,11 @@ const ItemCard = (props) => {
       </div>
       <div className="card-info">
         <p className="info category">{category}</p>
-        <button className="info-btn prod-name" value={key} onClick={displayInfo}>
+        <button
+          className="info-btn prod-name"
+          value={key}
+          onClick={displayInfo}
+        >
           {prodName}
         </button>
         <p className="info price">${price}</p>
