@@ -83,19 +83,25 @@ const ShopperApp = () => {
 
   return (
     <div id="ShopperApp">
-      <Navbar
-        cartQty={cart.length}
-        navigate={navigatePage}
-        filter={filterProducts}
-      />
-      {states.page === "home" && (
-        <Homepage
-          products={products}
-          stockQty={stockQtys}
-          addToCart={addToCart}
-          updateQty={updateStockQtys}
+      <div className="navigation">
+        <Navbar
+          cartQty={cart.length}
+          navigate={navigatePage}
+          filter={filterProducts}
         />
-      )}
+      </div>
+      
+      <div className="current-page">
+        {page === "home" && (
+          <Homepage
+            products={products}
+            stockQty={stockQtys}
+            addToCart={addToCart}
+            updateQty={updateStockQtys}
+          />
+        )}
+      </div>
+      
     </div>
   );
 };

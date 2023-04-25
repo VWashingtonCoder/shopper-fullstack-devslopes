@@ -15,7 +15,9 @@ class ProductService {
           const json = await resp.json();
           const data = json.data.map((product) => {
             const prodInfo = product.description;
-            const infoText = prodInfo.slice(3, prodInfo.length - 4);
+            const infoText = prodInfo
+              .replaceAll("<p>", "")
+              .replaceAll("</p>", "");
 
             return {
               key: product.id,
