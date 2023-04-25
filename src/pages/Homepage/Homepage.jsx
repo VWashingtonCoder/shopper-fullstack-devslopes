@@ -11,7 +11,8 @@ const Homepage = (props) => {
   const displayProdInfo = (e) => {
     const key = e.target.value;
     const product = products.find((item) => item.key === key);
-    setCurrentProduct(product);
+    const currProduct = { ...product, chosenQty: stockQty[key] }
+    setCurrentProduct(currProduct);
     setShowInfoMod(true);
   };
 
@@ -38,6 +39,7 @@ const Homepage = (props) => {
       <div className="info-module">
         {showInfoMod && (
           <ItemInfo
+            chosenQty={stockQty[currentProduct.key]}
             product={currentProduct}
             addToCart={addToCart}
             closeInfo={closeProdInfo}
