@@ -2,7 +2,7 @@ import { generateStockArr } from "../helpers";
 import { GrClose } from "react-icons/gr";
 
 const ItemInfo = (props) => {
-  const { product, addToCart, closeInfo, updateQty } = props;
+  const { chosenQty, product, addToCart, closeInfo, updateQty } = props;
   const { category, imgSrc, info, key, price, prodName, stockQty } = product;
   const qtyArr = generateStockArr(stockQty);
 
@@ -25,7 +25,12 @@ const ItemInfo = (props) => {
               <p className="info category">{category}</p>
               <p className="info price">${price}</p>
               <div className="buy-container flex-align-center">
-                <select name={key} id="cardQty" onChange={updateQty}>
+                <select
+                  name={key}
+                  id="cardQty"
+                  onChange={updateQty}
+                  value={chosenQty}
+                >
                   {qtyArr.map((num) => (
                     <option key={num} value={num}>
                       {num}
