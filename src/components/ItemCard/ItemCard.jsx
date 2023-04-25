@@ -1,4 +1,3 @@
-import "./ItemCard.css";
 import { generateStockArr } from "../helpers";
 
 const ItemCard = (props) => {

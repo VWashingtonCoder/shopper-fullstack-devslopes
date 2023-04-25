@@ -11,8 +11,7 @@ const Homepage = (props) => {
   const displayProdInfo = (e) => {
     const key = e.target.value;
     const product = products.find((item) => item.key === key);
-    const currProduct = { ...product, chosenQty: stockQty[key] }
-    setCurrentProduct(currProduct);
+    setCurrentProduct(product);
     setShowInfoMod(true);
   };
 
