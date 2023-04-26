@@ -1,4 +1,6 @@
 import { useState } from "react";
+import FormLogin from "../../components/FormLogin/FormLogin";
+import FormSignUp from "../../components/FormSignUp/FormSignUp";
 
 const AccountPage = (props) => {
     const { accounts } = props;
@@ -43,13 +45,20 @@ const AccountPage = (props) => {
                 
                 <div className="form-container">
                     {logSign === "login" && (
-                        <div className="form">Login Form</div>
+                        <FormLogin 
+                            accounts={accounts}
+                            show={showPW} 
+                        />
                     )}
                 </div>
 
                 <div className="form-container">
                     {logSign === "sign-up" && (
-                        <div className="form">Sign-Up Form</div>
+                        <FormSignUp 
+                            accounts={accounts}
+                            showConfirm={showConfirmPW}
+                            showPW={showPW} 
+                        />
                     )}
                 </div>
             </div>
