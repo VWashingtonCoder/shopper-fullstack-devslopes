@@ -41,6 +41,17 @@ const AccountPage = (props) => {
                     </label>
                 </div>
                 
+                <div className="form-container">
+                    {logSign === "login" && (
+                        <div className="form">Login Form</div>
+                    )}
+                </div>
+
+                <div className="form-container">
+                    {logSign === "sign-up" && (
+                        <div className="form">Sign-Up Form</div>
+                    )}
+                </div>
             </div>
         </div>
     );
