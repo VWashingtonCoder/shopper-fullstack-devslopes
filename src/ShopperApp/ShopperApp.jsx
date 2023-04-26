@@ -1,12 +1,18 @@
 import "./ShopperApp.css";
 import { useEffect, useState } from "react";
-import { generateStockQtys } from "../helpers";
-import ProductService from "../../services/services";
-import Navbar from "../Navbar/Navbar";
-import Homepage from "../../pages/Homepage/Homepage";
+import { generateStockQtys } from "../components/helpers";
+import ProductService from "../services/services";
+import Navbar from "../components/Navbar/Navbar";
+import Homepage from "../pages/Homepage/Homepage";
+import AccountPage from "../pages/AccountPage/AccountPage";
 
 const stockItems = new ProductService();
-const initAccounts = [{ id: 0, username: "admin", pw: "Password$1" }];
+const initAccounts = [{ 
+  id: 0, 
+  email: "admin@chgames.com", 
+  pw: "Password$1",
+  name: "Admin-sama"
+}];
 
 const ShopperApp = () => {
   const [accounts, setAccounts] = useState(initAccounts);
@@ -91,7 +97,7 @@ const ShopperApp = () => {
         />
       </div>
       
-      <div className="current-page">
+      <div className="page-container">
         {page === "home" && (
           <Homepage
             products={products}
@@ -102,6 +108,13 @@ const ShopperApp = () => {
         )}
       </div>
       
+      <div className="page-container">
+          {page === "login" && (
+            <AccountPage 
+              accounts={accounts} 
+            />
+          )}
+      </div>
     </div>
   );
 };
