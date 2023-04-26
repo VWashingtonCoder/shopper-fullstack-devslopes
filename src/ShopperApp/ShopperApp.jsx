@@ -18,7 +18,7 @@ const ShopperApp = () => {
   const [accounts, setAccounts] = useState(initAccounts);
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState("login");
   const [payCard, setPayCard] = useState({});
   const [products, setProducts] = useState([]);
   const [shipAddress, setShipAddress] = useState({});
