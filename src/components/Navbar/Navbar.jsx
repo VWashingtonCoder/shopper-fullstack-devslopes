@@ -3,7 +3,9 @@ import { MdGames } from "react-icons/md";
 import { navBtns, prodCategories } from "../comp-constants";
 
 const Navbar = (props) => {
-  const { cartQty, navigate, filter } = props;
+  const { active, cartQty, navigate, filter } = props;
+  const activeArr = Array.from(active);
+
   return (
     <div id="Navbar" className="container-fluid">
       <div className="nav-top flex-align-center">
@@ -23,7 +25,12 @@ const Navbar = (props) => {
                 onClick={navigate}
               >
                 {icon}
-                {text}
+                {key !=="login" 
+                  ? text
+                  :  key ==="login" && active.name === undefined
+                    ? text 
+                    : `${active.name}`
+                }
                 {key === "cart" && `${cartQty} Items`}
               </button>
             );

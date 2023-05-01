@@ -66,7 +66,8 @@ const ShopperApp = () => {
   };
 
   const navigatePage = (e) => {
-    setPage(e.target.value);
+    const page = e.target ? e.target.value : e;
+    setPage(page);
   };
 
   const filterProducts = (e) => {
@@ -87,10 +88,15 @@ const ShopperApp = () => {
     setStockQtys({ ...stockQtys, [name]: Number(value) });
   };
 
+  const updateActiveAccount = (account) => {
+    setActiveAccount(account);
+  }
+
   return (
     <div id="ShopperApp">
       <div className="navigation">
         <Navbar
+          active={activeAccount}
           cartQty={cart.length}
           navigate={navigatePage}
           filter={filterProducts}
@@ -112,6 +118,9 @@ const ShopperApp = () => {
           {page === "login" && (
             <AccountPage 
               accounts={accounts} 
+              active={activeAccount}
+              updateActive={updateActiveAccount}
+              navigate={navigatePage}
             />
           )}
       </div>
