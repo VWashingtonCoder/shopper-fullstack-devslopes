@@ -1,37 +1,39 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
+const loginFormInputs = [
+    {
+        key: "loginEmail", 
+        label: "Email", 
+        name: "email",
+        min: 0,
+        max: 99
+    },
+    {
+        key: "loginPassword", 
+        label: "Password", 
+        name: "password",
+        min: 8,
+        max: 20
+    }
+];
+
+
 const FormLogin = (props) => {
     const { 
-        accounts, 
-        formValues, 
+        error,
+        disabled,
+        formValues,
+        handleDisabled, 
         show, 
         submit,
         updateForm,
         updateShow
     } = props;
-
-
-    const loginFormInputs = [
-        {
-            key: "loginEmail", 
-            label: "Email", 
-            name: "email",
-            min: 0,
-            max: 99
-        },
-        {
-            key: "loginPassword", 
-            label: "Password", 
-            name: "password",
-            min: 8,
-            max: 20
-        }
-    ]
-    
-    
     
     return (
-        <form id="FormLogin" onSubmit={submit}>
+        <form id="FormLogin" onChange={handleDisabled} onSubmit={submit}>
+            {error && <p className="error-text">{error}</p>}
+            
             {loginFormInputs.map(input => {
                 const { key, label, name, min, max } = input;
                 return (
@@ -66,7 +68,7 @@ const FormLogin = (props) => {
                 );
             })}
 
-            <input className="submit-btn login" type="submit" />
+            <input className="submit-btn login" type="submit" disabled={disabled}/>
 
         </form>
     )
