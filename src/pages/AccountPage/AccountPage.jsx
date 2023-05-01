@@ -14,7 +14,8 @@ const AccountPage = (props) => {
   const [showPW, setShowPW] = useState(false);
   const [showConfirmPW, setShowConfirmPW] = useState(false);
   const [loginFormValues, setLoginFormValues] = useState(initLoginForm);
-  const [loginErrors, setLoginErrors] = useState({ email: "", password: "" });
+  const [loginError, setLoginError] = useState("");
+  const [disabledLoginSubmit, setDisabledLoginSumbit] = useState(true);
 
   const changeLogSign = (e) => {
     setLogSign(e.target.value);
@@ -24,6 +25,20 @@ const AccountPage = (props) => {
     e.preventDefault();
     setShowPW(!showPW);
   };
+
+  const handleLoginDisabled = (e) => {
+    const { name, value } = e.target;
+    const { email, password } = loginFormValues;
+    let disabled = true;
+
+    if (name === "email" && value.length > 0) {
+        if (password.length > 0) disabled = false;
+    } else {
+        if (email.length > 0) disabled = false;
+    }
+    
+    setDisabledLoginSumbit(disabled);
+  }
 
   const updateShowConfirmPW = (e) => {
     e.preventDefault();
@@ -38,19 +53,17 @@ const AccountPage = (props) => {
   const validateLoginSubmit = (e) => {
     e.preventDefault();
     const { email, password } = loginFormValues;
-    const account = accounts.find((item) => item.email === email);
+    const account = accounts.find((item) => item.email.toLowerCase() === email.toLowerCase());
+    let error = "";
 
     if (account) {
       if (account.pw === password) {
         updateActive(account);
         navigate("home");
-      } else {
-        console.log("Wrong Password Provided");
-      }
-    } else {
-      setLoginErrors({ ...loginErrors, email: "Email Not On File" });
-      console.log("Email Not On File");
-    }
+      } else error = "Wrong Password Provided";
+    } else error = "Email Not On File";
+    
+    setLoginError(error);
   };
 
   return (
@@ -77,8 +90,10 @@ const AccountPage = (props) => {
             </div>
             {logSign === "login" ? (
               <FormLogin
-                accounts={accounts}
                 formValues={loginFormValues}
+                disabled={disabledLoginSubmit}
+                error={loginError}
+                handleDisabled={handleLoginDisabled}
                 show={showPW}
                 submit={validateLoginSubmit}
                 updateForm={updateLoginFormValues}
