@@ -32,12 +32,12 @@ const FormLogin = (props) => {
     
     return (
         <form id="FormLogin" onChange={handleDisabled} onSubmit={submit}>
-            {error && <p className="error-text">{error}</p>}
+            {error && <p className="error-text">* {error}</p>}
             
             {loginFormInputs.map(input => {
                 const { key, label, name, min, max } = input;
                 return (
-                    <div key={key} className={`form-input ${name}`}>
+                    <div key={key} className={`form-input ${name} flex-align-center`}>
                         <label htmlFor={name}>{label}</label>
                         <input
                             name={name}

@@ -1,11 +1,21 @@
+import "./AccountPage.css";
 import { useState } from "react";
+import { RxDividerVertical } from "react-icons/rx";
 import FormLogin from "../../components/FormLogin/FormLogin";
 import FormSignUp from "../../components/FormSignUp/FormSignUp";
 import { initLoginForm } from "../pages-constants";
 
 const logSignKeys = [
-  { key: "login", id: "radioLogin", label: "Login" },
-  { key: "sign-up", id: "radioSignUp", label: "Sign Up" },
+  { 
+    key: "login", 
+    id: "radioLogin", 
+    label: "Login" 
+  },
+  { 
+    key: "sign-up", 
+    id: "radioSignUp", 
+    label: "Sign Up" 
+  },
 ];
 
 const AccountPage = (props) => {
@@ -71,19 +81,25 @@ const AccountPage = (props) => {
       <div className="page-body">
         {!active.name ? (
           <div className="form-container">
-            <div className="page-header">
+            <div className="page-header flex-align-center">
               {logSignKeys.map((item) => {
                 const { key, id, label } = item;
                 return (
-                  <div key={key} className={`radio-btn ${key}`}>
-                    <input
-                      type="radio"
-                      id={id}
-                      value={key}
-                      checked={logSign === key}
-                      onChange={changeLogSign}
-                    />
-                    <label htmlFor={id}>{label}</label>
+                  <div key={key} className="flex-align-center">
+                    <div className={`radio-btn ${key} flex-align-center`}>
+                      <input
+                        type="radio"
+                        id={id}
+                        value={key}
+                        checked={logSign === key}
+                        onChange={changeLogSign}
+                      />
+                      <label htmlFor={id}>
+                        {label}
+                      </label>
+                    </div>
+                    
+                    {key === "login" && <RxDividerVertical className="icon divider" />}
                   </div>
                 );
               })}
