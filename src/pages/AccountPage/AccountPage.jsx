@@ -3,66 +3,59 @@ import { useState } from "react";
 import { RxDividerVertical } from "react-icons/rx";
 import FormLogin from "../../components/FormLogin/FormLogin";
 import FormSignUp from "../../components/FormSignUp/FormSignUp";
-import { initLoginForm } from "../pages-constants";
+import { initLoginStates, initPasswordStates, logSignKeys } from "../pages-constants";
 
-const logSignKeys = [
-  { 
-    key: "login", 
-    id: "radioLogin", 
-    label: "Login" 
-  },
-  { 
-    key: "sign-up", 
-    id: "radioSignUp", 
-    label: "Sign Up" 
-  },
-];
+
 
 const AccountPage = (props) => {
-  const { accounts, active, updateActive, navigate } = props;
+  const { 
+    accounts, 
+    active, 
+    updateActive, 
+    navigate 
+  } = props;
+
   const [logSign, setLogSign] = useState("login");
-  const [showPW, setShowPW] = useState(false);
-  const [showConfirmPW, setShowConfirmPW] = useState(false);
-  const [loginFormValues, setLoginFormValues] = useState(initLoginForm);
-  const [loginError, setLoginError] = useState("");
-  const [disabledLoginSubmit, setDisabledLoginSumbit] = useState(true);
+  const [showPW, setShowPW] = useState(initPasswordStates);
+  const [loginStates, setLoginStates] = useState(initLoginStates);
 
   const changeLogSign = (e) => {
     setLogSign(e.target.value);
   };
 
-  const updateShowPW = (e) => {
+  const updateShowPWs = (e) => {
     e.preventDefault();
-    setShowPW(!showPW);
+    const name = e.target.value;
+    const state = showPW[name];
+    setShowPW({ ...showPW, [name]: !state });
   };
 
   const handleLoginDisabled = (e) => {
     const { name, value } = e.target;
-    const { email, password } = loginFormValues;
+    const { email, password } = loginStates.formValues;
     let disabled = true;
-
     if (name === "email" && value.length > 0) {
         if (password.length > 0) disabled = false;
     } else {
         if (email.length > 0) disabled = false;
     }
-    
-    setDisabledLoginSumbit(disabled);
+    setLoginStates({ ...loginStates, disabled: disabled });
   }
-
-  const updateShowConfirmPW = (e) => {
-    e.preventDefault();
-    setShowConfirmPW(!showConfirmPW);
-  };
 
   const updateLoginFormValues = (e) => {
     const { name, value } = e.target;
-    setLoginFormValues({ ...loginFormValues, [name]: value });
+    const newFormValues = loginStates.formValues
+    newFormValues[name] = value;
+
+    setLoginStates({ 
+      ...loginStates, 
+      formValues: newFormValues
+    });
   };
 
   const validateLoginSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = loginFormValues;
+    const { email, password } = loginStates.formValues;
     const account = accounts.find((item) => item.email.toLowerCase() === email.toLowerCase());
     let error = "";
 
@@ -73,7 +66,7 @@ const AccountPage = (props) => {
       } else error = "Wrong Password Provided";
     } else error = "Email Not On File";
     
-    setLoginError(error);
+    setLoginStates({ ...loginStates, error: error });
   };
 
   return (
@@ -106,19 +99,19 @@ const AccountPage = (props) => {
             </div>
             {logSign === "login" ? (
               <FormLogin
-                formValues={loginFormValues}
-                disabled={disabledLoginSubmit}
-                error={loginError}
+                formValues={loginStates.formValues}
+                disabled={loginStates.disabled}
+                error={loginStates.error}
                 handleDisabled={handleLoginDisabled}
-                show={showPW}
+                show={showPW.password}
                 submit={validateLoginSubmit}
                 updateForm={updateLoginFormValues}
-                updateShow={updateShowPW}
+                updateShow={updateShowPWs}
               />
             ) : (
               <FormSignUp
                 accounts={accounts}
-                showConfirm={showConfirmPW}
+                // showConfirm={showConfirmPW}
                 showPW={showPW}
               />
             )}

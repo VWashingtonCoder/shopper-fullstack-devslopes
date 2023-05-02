@@ -30,6 +30,8 @@ const FormLogin = (props) => {
         updateShow
     } = props;
     
+    console.log()
+
     return (
         <form id="FormLogin" onChange={handleDisabled} onSubmit={submit}>
             {error && <p className="error-text">* {error}</p>}
@@ -55,12 +57,13 @@ const FormLogin = (props) => {
                         />
                         {name === "password" && (
                             <button 
-                                className="pw-btn icon-btn login" 
+                                className="pw-btn login"
+                                value="password" 
                                 onClick={updateShow}
                             >
                                 {show 
-                                    ? <AiFillEyeInvisible className="eye-icon" />
-                                    : <AiFillEye className="eye-icon" />
+                                    ? <AiFillEyeInvisible className="eye-icon icon" />
+                                    : <AiFillEye className="eye-icon icon" />
                                 }
                             </button>
                         )}
