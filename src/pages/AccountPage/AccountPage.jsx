@@ -13,17 +13,9 @@ const initSignUpFormValues = {
   confirm: "",
 };
 
-const initSignUpErrors = {
-  firstName: "",
-  surname: "",
-  email: "",
-  password: "",
-  confirm: "",
-};
-
 const initSignUpStates = {
   formValues: initSignUpFormValues,
-  errors: initSignUpErrors,
+  errors: {},
   disabled: true,
   showPW: { password: false, confirm: false },
 };

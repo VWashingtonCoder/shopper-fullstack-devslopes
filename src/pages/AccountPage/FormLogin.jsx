@@ -29,12 +29,13 @@ const FormLogin = (props) => {
         updateForm,
         updateShow
     } = props;
-    
-    console.log()
 
     return (
         <form id="FormLogin" onChange={handleDisabled} onSubmit={submit}>
-            {error && <p className="error-text">* {error}</p>}
+            <div className="form-head">
+                <h2>Returning User</h2>
+                {error && <p className="error-text">* {error}</p>}
+            </div>
             
             {loginFormInputs.map(input => {
                 const { key, label, name, min, max } = input;

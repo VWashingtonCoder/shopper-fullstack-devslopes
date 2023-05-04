@@ -11,15 +11,30 @@ const signUpInputs = [
 const FormSignUp = (props) => {
   const { 
     formValues, 
-    disabled, 
+    disabled,
+    errors, 
     showPW, 
     showConfirm, 
     updateForm,
     updateShow 
   } = props;
-
+  const errorsArr = Object.values(errors);
+  console.log(errorsArr)
   return (
     <form id="FormSignUp">
+      <div className="form-head">
+        <h2>New User</h2>
+        <div className="pw-rules">
+          Password must include 8-20 characters including at least one of each:
+          <ul>
+            <li>Lowercase Letter (a-z)</li>
+            <li>Uppercase Letter (A-Z)</li>
+            <li>Number (0-9)</li>
+            <li>Special Character (!@#$%^&*)</li>
+          </ul>
+        </div>
+      </div>
+
       {signUpInputs.map((input) => {
         const { key, label, type } = input;
         const pwType = showPW ? "text" : type;
@@ -35,8 +50,8 @@ const FormSignUp = (props) => {
                 key === "password"
                   ? pwType
                   : key === "confirm"
-                  ? confirmType
-                  : type
+                    ? confirmType
+                    : type
               }
               value={formValues[key]}
             />
@@ -53,6 +68,7 @@ const FormSignUp = (props) => {
                 }
               </button>
             )}
+            {errors[key] && (<p className="error-text">{errors[key]}</p>)}
           </div>
         );
       })}
