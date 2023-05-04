@@ -96,7 +96,10 @@ const AccountPage = (props) => {
 
   const updateSignUpShowPW = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
+    const type = e.target.value;
+    const currState = signUpStates.showPW;
+    const newState = { ...currState, [type]: !currState[type] };
+    setSignUpStates({ ...signUpStates, showPW: newState });
   }
 
   return (
