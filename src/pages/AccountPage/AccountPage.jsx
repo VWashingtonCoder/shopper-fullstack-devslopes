@@ -10,31 +10,26 @@ const initSignUpFormValues = {
   surname: "",
   email: "",
   password: "",
-  confirm: ""
-}
+  confirm: "",
+};
 
 const initSignUpErrors = {
   firstName: "",
   surname: "",
   email: "",
   password: "",
-  confirm: ""
-}
+  confirm: "",
+};
 
-const initSignUpStates ={
+const initSignUpStates = {
   formValues: initSignUpFormValues,
   errors: initSignUpErrors,
   disabled: true,
-  showPW: { password: false, confirm: false }
-}
+  showPW: { password: false, confirm: false },
+};
 
 const AccountPage = (props) => {
-  const { 
-    accounts, 
-    active, 
-    updateActive, 
-    navigate 
-  } = props;
+  const { accounts, active, updateActive, navigate } = props;
 
   const [logSign, setLogSign] = useState("sign-up");
   const [loginStates, setLoginStates] = useState(initLoginStates);
@@ -49,34 +44,37 @@ const AccountPage = (props) => {
     const { email, password } = loginStates.formValues;
     let disabled = true;
     if (name === "email" && value.length > 0) {
-        if (password.length > 0) disabled = false;
+      if (password.length > 0 || !value.includes("@") || !value.includes("."))
+        disabled = false;
     } else {
-        if (email.length > 0) disabled = false;
+      if (email.length > 0 || value.length < 8) disabled = false;
     }
     setLoginStates({ ...loginStates, disabled: disabled });
-  }
+  };
 
   const updateLoginFormValues = (e) => {
     const { name, value } = e.target;
-    const newFormValues = loginStates.formValues
+    const newFormValues = loginStates.formValues;
     newFormValues[name] = value;
 
-    setLoginStates({ 
-      ...loginStates, 
-      formValues: newFormValues
+    setLoginStates({
+      ...loginStates,
+      formValues: newFormValues,
     });
   };
 
   const updateLoginShowPW = (e) => {
     e.preventDefault();
     const currState = loginStates.showPW;
-    setLoginStates({ ...loginStates, showPW: !currState})
+    setLoginStates({ ...loginStates, showPW: !currState });
   };
 
   const validateLoginSubmit = (e) => {
     e.preventDefault();
     const { email, password } = loginStates.formValues;
-    const account = accounts.find((item) => item.email.toLowerCase() === email.toLowerCase());
+    const account = accounts.find(
+      (item) => item.email.toLowerCase() === email.toLowerCase()
+    );
     let error = "";
 
     if (account) {
@@ -85,7 +83,7 @@ const AccountPage = (props) => {
         navigate("home");
       } else error = "Wrong Password Provided";
     } else error = "Email Not On File";
-    
+
     setLoginStates({ ...loginStates, error: error });
   };
 
@@ -94,6 +92,11 @@ const AccountPage = (props) => {
     const currentForm = signUpStates.formValues;
     const newForm = { ...currentForm, [name]: value };
     setSignUpStates({ ...signUpStates, formValues: newForm });
+  };
+
+  const updateSignUpShowPW = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
   }
 
   return (
@@ -114,12 +117,12 @@ const AccountPage = (props) => {
                         checked={logSign === key}
                         onChange={changeLogSign}
                       />
-                      <label htmlFor={id}>
-                        {label}
-                      </label>
+                      <label htmlFor={id}>{label}</label>
                     </div>
-                    
-                    {key === "login" && <RxDividerVertical className="icon divider" />}
+
+                    {key === "login" && (
+                      <RxDividerVertical className="icon divider" />
+                    )}
                   </div>
                 );
               })}
@@ -139,14 +142,16 @@ const AccountPage = (props) => {
               <FormSignUp
                 formValues={signUpStates.formValues}
                 disabled={signUpStates.disabled}
+                errors={signUpStates.errors}
                 showPW={signUpStates.showPW.password}
                 showConfirm={signUpStates.showPW.confirm}
                 updateForm={updateSignUpFormValues}
+                updateShow={updateSignUpShowPW}
               />
             )}
           </div>
         ) : (
-            <button className="logout-btn">Log Out</button>
+          <button className="logout-btn">Log Out</button>
         )}
       </div>
     </div>
