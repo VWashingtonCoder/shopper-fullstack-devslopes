@@ -1,4 +1,4 @@
-import { generateStockArr } from "../helpers";
+import { generateStockArr } from "../../data/helpers";
 
 const ItemCard = (props) => {
   const { item, itemQty, addToCart, displayInfo, updateQty } = props;

@@ -1,10 +1,9 @@
 import "./Navbar.css";
 import { MdGames } from "react-icons/md";
-import { navBtns, prodCategories } from "../comp-constants";
+import { navBtns, prodCategories } from "../../data/constants";
 
 const Navbar = (props) => {
   const { active, cartQty, navigate, filter } = props;
-  const activeArr = Array.from(active);
 
   return (
     <div id="Navbar" className="container-fluid">

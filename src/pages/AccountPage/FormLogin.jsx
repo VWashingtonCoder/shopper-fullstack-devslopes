@@ -58,7 +58,6 @@ const FormLogin = (props) => {
                         {name === "password" && (
                             <button 
                                 className="pw-btn login"
-                                value="password" 
                                 onClick={updateShow}
                             >
                                 {show 

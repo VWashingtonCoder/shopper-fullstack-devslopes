@@ -1,6 +1,6 @@
 import "./ShopperApp.css";
 import { useEffect, useState } from "react";
-import { generateStockQtys } from "../components/helpers";
+import { generateStockQtys } from "../data/helpers";
 import ProductService from "../services/services";
 import Navbar from "../components/Navbar/Navbar";
 import Homepage from "../pages/Homepage/Homepage";

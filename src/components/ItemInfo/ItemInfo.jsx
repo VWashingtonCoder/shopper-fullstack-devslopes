@@ -1,4 +1,4 @@
-import { generateStockArr } from "../helpers";
+import { generateStockArr } from "../../data/helpers";
 import { GrClose } from "react-icons/gr";
 
 const ItemInfo = (props) => {

@@ -1,11 +1,32 @@
 import "./AccountPage.css";
 import { useState } from "react";
 import { RxDividerVertical } from "react-icons/rx";
-import FormLogin from "../../components/FormLogin/FormLogin";
-import FormSignUp from "../../components/FormSignUp/FormSignUp";
-import { initLoginStates, initPasswordStates, logSignKeys } from "../pages-constants";
+import FormLogin from "./FormLogin";
+import FormSignUp from "./FormSignUp";
+import { initLoginStates, logSignKeys } from "../../data/constants";
 
+const initSignUpFormValues = {
+  firstName: "",
+  surname: "",
+  email: "",
+  password: "",
+  confirm: ""
+}
 
+const initSignUpErrors = {
+  firstName: "",
+  surname: "",
+  email: "",
+  password: "",
+  confirm: ""
+}
+
+const initSignUpStates ={
+  formValues: initSignUpFormValues,
+  errors: initSignUpErrors,
+  disabled: true,
+  showPW: { password: false, confirm: false }
+}
 
 const AccountPage = (props) => {
   const { 
@@ -15,19 +36,12 @@ const AccountPage = (props) => {
     navigate 
   } = props;
 
-  const [logSign, setLogSign] = useState("login");
-  const [showPW, setShowPW] = useState(initPasswordStates);
+  const [logSign, setLogSign] = useState("sign-up");
   const [loginStates, setLoginStates] = useState(initLoginStates);
+  const [signUpStates, setSignUpStates] = useState(initSignUpStates);
 
   const changeLogSign = (e) => {
     setLogSign(e.target.value);
-  };
-
-  const updateShowPWs = (e) => {
-    e.preventDefault();
-    const name = e.target.value;
-    const state = showPW[name];
-    setShowPW({ ...showPW, [name]: !state });
   };
 
   const handleLoginDisabled = (e) => {
@@ -53,6 +67,12 @@ const AccountPage = (props) => {
     });
   };
 
+  const updateLoginShowPW = (e) => {
+    e.preventDefault();
+    const currState = loginStates.showPW;
+    setLoginStates({ ...loginStates, showPW: !currState})
+  };
+
   const validateLoginSubmit = (e) => {
     e.preventDefault();
     const { email, password } = loginStates.formValues;
@@ -68,6 +88,13 @@ const AccountPage = (props) => {
     
     setLoginStates({ ...loginStates, error: error });
   };
+
+  const updateSignUpFormValues = (e) => {
+    const { name, value } = e.target;
+    const currentForm = signUpStates.formValues;
+    const newForm = { ...currentForm, [name]: value };
+    setSignUpStates({ ...signUpStates, formValues: newForm });
+  }
 
   return (
     <div id="AccountPage">
@@ -103,16 +130,18 @@ const AccountPage = (props) => {
                 disabled={loginStates.disabled}
                 error={loginStates.error}
                 handleDisabled={handleLoginDisabled}
-                show={showPW.password}
+                show={loginStates.showPW}
                 submit={validateLoginSubmit}
                 updateForm={updateLoginFormValues}
-                updateShow={updateShowPWs}
+                updateShow={updateLoginShowPW}
               />
             ) : (
               <FormSignUp
-                accounts={accounts}
-                // showConfirm={showConfirmPW}
-                showPW={showPW}
+                formValues={signUpStates.formValues}
+                disabled={signUpStates.disabled}
+                showPW={signUpStates.showPW.password}
+                showConfirm={signUpStates.showPW.confirm}
+                updateForm={updateSignUpFormValues}
               />
             )}
           </div>
