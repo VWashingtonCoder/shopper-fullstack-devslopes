@@ -10,7 +10,7 @@ const stockItems = new ProductService();
 const initAccounts = [{ 
   id: 0, 
   email: "admin@chgames.com", 
-  pw: "Password$1",
+  password: "Password$1",
   name: "Admin-sama"
 }];
 
@@ -88,6 +88,10 @@ const ShopperApp = () => {
     setStockQtys({ ...stockQtys, [name]: Number(value) });
   };
 
+  const addToAccounts = (newAcc) => {
+    setAccounts([ ...accounts, newAcc ]);
+  } 
+
   const updateActiveAccount = (account) => {
     setActiveAccount(account);
   }
@@ -117,7 +121,8 @@ const ShopperApp = () => {
       <div className="page-container">
           {page === "login" && (
             <AccountPage 
-              accounts={accounts} 
+              accounts={accounts}
+              addAccount={addToAccounts}
               active={activeAccount}
               updateActive={updateActiveAccount}
               navigate={navigatePage}

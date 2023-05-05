@@ -4,7 +4,7 @@ import { RxDividerVertical } from "react-icons/rx";
 import FormLogin from "./FormLogin";
 import FormSignUp from "./FormSignUp";
 import { initLoginStates, logSignKeys } from "../../data/constants";
-import { validateSignUpDisabled } from "../../data/helpers";
+import { validateSignUpDisabled, validateSignUpForm } from "../../data/helpers";
 
 const initSignUpFormValues = {
   firstName: "",
@@ -22,7 +22,13 @@ const initSignUpStates = {
 };
 
 const AccountPage = (props) => {
-  const { accounts, active, updateActive, navigate } = props;
+  const { 
+    accounts, 
+    active, 
+    addAccount,
+    updateActive, 
+    navigate 
+  } = props;
 
   const [logSign, setLogSign] = useState("sign-up");
   const [loginStates, setLoginStates] = useState(initLoginStates);
@@ -71,7 +77,7 @@ const AccountPage = (props) => {
     let error = "";
 
     if (account) {
-      if (account.pw === password) {
+      if (account.password === password) {
         updateActive(account);
         navigate("home");
       } else error = "Wrong Password Provided";
@@ -97,6 +103,27 @@ const AccountPage = (props) => {
     const currState = signUpStates.showPW;
     const newState = { ...currState, [type]: !currState[type] };
     setSignUpStates({ ...signUpStates, showPW: newState });
+  }
+
+  const submitSignUpForm = (e) => {
+    e.preventDefault();
+    const { valid, errors } = validateSignUpForm(signUpStates.formValues, accounts);
+    const { email, password, firstName, surname } = signUpStates.formValues;
+    const newAccount = {
+      id: accounts.length + 1,
+      email: email, 
+      password: password,
+      name: `${firstName} ${surname}`
+    };
+
+    if(valid) {
+      addAccount(newAccount);
+      setLoginStates({ ...loginStates, message: "Account Added Successfully" });
+      setSignUpStates({ ...signUpStates, formValues: initSignUpFormValues })
+      setLogSign("login");
+    }
+
+    setSignUpStates({ ...signUpStates, errors: errors });
   }
 
   return (
@@ -132,6 +159,7 @@ const AccountPage = (props) => {
                 formValues={loginStates.formValues}
                 disabled={loginStates.disabled}
                 error={loginStates.error}
+                message={loginStates.message}
                 handleDisabled={handleLoginDisabled}
                 show={loginStates.showPW}
                 submit={validateLoginSubmit}
@@ -145,6 +173,7 @@ const AccountPage = (props) => {
                 errors={signUpStates.errors}
                 showPW={signUpStates.showPW.password}
                 showConfirm={signUpStates.showPW.confirm}
+                submit={submitSignUpForm}
                 updateForm={updateSignUpFormValues}
                 updateShow={updateSignUpShowPW}
               />

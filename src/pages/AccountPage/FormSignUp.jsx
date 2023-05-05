@@ -15,12 +15,13 @@ const FormSignUp = (props) => {
     errors, 
     showPW, 
     showConfirm, 
+    submit,
     updateForm,
     updateShow 
   } = props;
 
   return (
-    <form id="FormSignUp">
+    <form id="FormSignUp" onSubmit={submit}>
       <div className="form-head">
         <h2>New User</h2>
         <p className="head-text">

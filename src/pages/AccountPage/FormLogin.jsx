@@ -23,7 +23,8 @@ const FormLogin = (props) => {
         error,
         disabled,
         formValues,
-        handleDisabled, 
+        handleDisabled,
+        message, 
         show, 
         submit,
         updateForm,
@@ -34,6 +35,7 @@ const FormLogin = (props) => {
         <form id="FormLogin" onChange={handleDisabled} onSubmit={submit}>
             <div className="form-head">
                 <h2>Returning User</h2>
+                {message && <p className="message">{message}</p>}
                 {error && <p className="error-text">* {error}</p>}
             </div>
             

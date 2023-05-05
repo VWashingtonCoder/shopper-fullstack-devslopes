@@ -45,5 +45,6 @@ export const initLoginStates = {
     formValues: initLoginForm,
     error: "",
     disabled: true,
+    message: "",
     showPW: false
 };
