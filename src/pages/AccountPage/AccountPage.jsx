@@ -4,6 +4,7 @@ import { RxDividerVertical } from "react-icons/rx";
 import FormLogin from "./FormLogin";
 import FormSignUp from "./FormSignUp";
 import { initLoginStates, logSignKeys } from "../../data/constants";
+import { validateSignUpDisabled } from "../../data/helpers";
 
 const initSignUpFormValues = {
   firstName: "",
@@ -79,11 +80,15 @@ const AccountPage = (props) => {
     setLoginStates({ ...loginStates, error: error });
   };
 
+  
   const updateSignUpFormValues = (e) => {
     const { name, value } = e.target;
     const currentForm = signUpStates.formValues;
     const newForm = { ...currentForm, [name]: value };
-    setSignUpStates({ ...signUpStates, formValues: newForm });
+    const newFormArr = Object.entries(newForm);
+    const disableSubmit = validateSignUpDisabled(newFormArr);
+
+    setSignUpStates({ ...signUpStates, formValues: newForm, disabled: disableSubmit });
   };
 
   const updateSignUpShowPW = (e) => {

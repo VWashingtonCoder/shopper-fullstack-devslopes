@@ -18,21 +18,14 @@ const FormSignUp = (props) => {
     updateForm,
     updateShow 
   } = props;
-  const errorsArr = Object.values(errors);
-  console.log(errorsArr)
+
   return (
     <form id="FormSignUp">
       <div className="form-head">
         <h2>New User</h2>
-        <div className="pw-rules">
-          Password must include 8-20 characters including at least one of each:
-          <ul>
-            <li>Lowercase Letter (a-z)</li>
-            <li>Uppercase Letter (A-Z)</li>
-            <li>Number (0-9)</li>
-            <li>Special Character (!@#$%^&*)</li>
-          </ul>
-        </div>
+        <p className="head-text">
+          Password must include 8-20 characters including at least one of each: Lowercase Letter (a-z), Uppercase Letter (A-Z), Number (0-9), Special Character (!@#$%^&*).
+        </p>
       </div>
 
       {signUpInputs.map((input) => {
