@@ -1,23 +1,16 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
-const signUpInputs = [
-  { key: "firstName", label: "First Name", type: "text" },
-  { key: "surname", label: "Surname", type: "text" },
-  { key: "email", label: "Email", type: "email" },
-  { key: "password", label: "Password", type: "password" },
-  { key: "confirm", label: "Confirm Password", type: "password" },
-];
+import { signUpInputs } from "../../data/constants";
 
 const FormSignUp = (props) => {
-  const { 
-    formValues, 
+  const {
+    formValues,
     disabled,
-    errors, 
-    showPW, 
-    showConfirm, 
+    errors,
+    showPW,
+    showConfirm,
     submit,
     updateForm,
-    updateShow 
+    updateShow,
   } = props;
 
   return (
@@ -25,7 +18,9 @@ const FormSignUp = (props) => {
       <div className="form-head">
         <h2>New User</h2>
         <p className="head-text">
-          Password must include 8-20 characters including at least one of each: Lowercase Letter (a-z), Uppercase Letter (A-Z), Number (0-9), Special Character (!@#$%^&*).
+          Password must include 8-20 characters including at least one of each:
+          Lowercase Letter (a-z), Uppercase Letter (A-Z), Number (0-9), Special
+          Character (!@#$%^&*).
         </p>
       </div>
 
@@ -44,25 +39,26 @@ const FormSignUp = (props) => {
                 key === "password"
                   ? pwType
                   : key === "confirm"
-                    ? confirmType
-                    : type
+                  ? confirmType
+                  : type
               }
               value={formValues[key]}
             />
             {(key === "password" || key === "confirm") && (
-              <button 
-                className={`pw-btn sign-up ${key}`} 
+              <button
+                className={`pw-btn sign-up ${key}`}
                 onClick={updateShow}
                 value={key}
               >
-                {(key === "password" && showPW) 
-                  || (key === "confirm" && showConfirm)
-                    ? <AiFillEyeInvisible className="eye-icon icon" />
-                    : <AiFillEye className="eye-icon icon" />
-                }
+                {(key === "password" && showPW) ||
+                (key === "confirm" && showConfirm) ? (
+                  <AiFillEyeInvisible className="eye-icon icon" />
+                ) : (
+                  <AiFillEye className="eye-icon icon" />
+                )}
               </button>
             )}
-            {errors[key] && (<p className="error-text">{errors[key]}</p>)}
+            {errors[key] && <p className="error-text">{errors[key]}</p>}
           </div>
         );
       })}

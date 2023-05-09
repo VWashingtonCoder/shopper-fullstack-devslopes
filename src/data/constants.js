@@ -1,8 +1,16 @@
 import { MdHome, MdLogin, MdShoppingCart } from "react-icons/md";
 
-const initLoginForm = { 
-    email: "",
-    password: ""
+const initLoginForm = {
+  email: "",
+  password: "",
+};
+
+export const initSignUpFormValues = {
+  firstName: "",
+  surname: "",
+  email: "",
+  password: "",
+  confirm: "",
 };
 
 export const navBtns = [
@@ -41,10 +49,42 @@ export const logSignKeys = [
   },
 ];
 
+export const loginFormInputs = [
+  {
+      key: "loginEmail", 
+      label: "Email", 
+      name: "email",
+      min: 0,
+      max: 99
+  },
+  {
+      key: "loginPassword", 
+      label: "Password", 
+      name: "password",
+      min: 8,
+      max: 20
+  }
+];
+
+export const signUpInputs = [
+  { key: "firstName", label: "First Name", type: "text" },
+  { key: "surname", label: "Surname", type: "text" },
+  { key: "email", label: "Email", type: "email" },
+  { key: "password", label: "Password", type: "password" },
+  { key: "confirm", label: "Confirm Password", type: "password" },
+];
+
 export const initLoginStates = {
-    formValues: initLoginForm,
-    error: "",
-    disabled: true,
-    message: "",
-    showPW: false
+  formValues: initLoginForm,
+  error: "",
+  disabled: true,
+  message: "",
+  showPW: false,
+};
+
+export const initSignUpStates = {
+  formValues: initSignUpFormValues,
+  errors: {},
+  disabled: true,
+  showPW: { password: false, confirm: false },
 };

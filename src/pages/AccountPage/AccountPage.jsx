@@ -3,32 +3,16 @@ import { useState } from "react";
 import { RxDividerVertical } from "react-icons/rx";
 import FormLogin from "./FormLogin";
 import FormSignUp from "./FormSignUp";
-import { initLoginStates, logSignKeys } from "../../data/constants";
+import {
+  initLoginStates,
+  initSignUpFormValues,
+  initSignUpStates,
+  logSignKeys,
+} from "../../data/constants";
 import { validateSignUpDisabled, validateSignUpForm } from "../../data/helpers";
 
-const initSignUpFormValues = {
-  firstName: "",
-  surname: "",
-  email: "",
-  password: "",
-  confirm: "",
-};
-
-const initSignUpStates = {
-  formValues: initSignUpFormValues,
-  errors: {},
-  disabled: true,
-  showPW: { password: false, confirm: false },
-};
-
 const AccountPage = (props) => {
-  const { 
-    accounts, 
-    active, 
-    addAccount,
-    updateActive, 
-    navigate 
-  } = props;
+  const { accounts, active, addAccount, updateActive, navigate } = props;
 
   const [logSign, setLogSign] = useState("sign-up");
   const [loginStates, setLoginStates] = useState(initLoginStates);
@@ -86,7 +70,6 @@ const AccountPage = (props) => {
     setLoginStates({ ...loginStates, error: error, message: "" });
   };
 
-  
   const updateSignUpFormValues = (e) => {
     const { name, value } = e.target;
     const currentForm = signUpStates.formValues;
@@ -94,37 +77,44 @@ const AccountPage = (props) => {
     const newFormArr = Object.entries(newForm);
     const disableSubmit = validateSignUpDisabled(newFormArr);
 
-    setSignUpStates({ ...signUpStates, formValues: newForm, disabled: disableSubmit });
+    setSignUpStates({
+      ...signUpStates,
+      formValues: newForm,
+      disabled: disableSubmit,
+    });
   };
 
   const updateSignUpShowPW = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const type = e.target.value;
     const currState = signUpStates.showPW;
     const newState = { ...currState, [type]: !currState[type] };
     setSignUpStates({ ...signUpStates, showPW: newState });
-  }
+  };
 
   const submitSignUpForm = (e) => {
     e.preventDefault();
-    const { valid, errors } = validateSignUpForm(signUpStates.formValues, accounts);
+    const { valid, errors } = validateSignUpForm(
+      signUpStates.formValues,
+      accounts
+    );
     const { email, password, firstName, surname } = signUpStates.formValues;
     const newAccount = {
       id: accounts.length + 1,
-      email: email, 
+      email: email,
       password: password,
-      name: `${firstName} ${surname}`
+      name: `${firstName} ${surname}`,
     };
 
-    if(valid) {
+    if (valid) {
       addAccount(newAccount);
       setLoginStates({ ...loginStates, message: "Account Added Successfully" });
-      setSignUpStates({ ...signUpStates, formValues: initSignUpFormValues })
+      setSignUpStates({ ...signUpStates, formValues: initSignUpFormValues });
       setLogSign("login");
     }
 
     setSignUpStates({ ...signUpStates, errors: errors });
-  }
+  };
 
   return (
     <div id="AccountPage">
