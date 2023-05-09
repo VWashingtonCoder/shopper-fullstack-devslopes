@@ -83,7 +83,7 @@ const AccountPage = (props) => {
       } else error = "Wrong Password Provided";
     } else error = "Email Not On File";
 
-    setLoginStates({ ...loginStates, error: error });
+    setLoginStates({ ...loginStates, error: error, message: "" });
   };
 
   

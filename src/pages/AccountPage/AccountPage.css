@@ -35,10 +35,30 @@ input[type="radio"]:checked {
     background-color: cornsilk;
 }
 
+.message {
+    margin-top: 7px;
+    font-size: 20px;
+    font-weight: 500;
+    color: darkcyan;
+}
+
 .error-text {
     color: red;
-    margin-bottom: 20px;
     font-size: 24px;
+}
+
+#FormLogin .error-text {
+    margin-top: 7px;
+
+}
+
+.form-head {
+    margin-bottom: 20px;
+}
+
+.head-text {
+    margin: 15px 0;
+    font-size: 18px;
 }
 
 .form-input {
@@ -55,6 +75,12 @@ input[type="radio"]:checked {
     border-radius: 5px;
     padding: 5px 7px;
     font-size: 20px;
+}
+
+.form-input .error-text {
+    font-size: 17px;
+    margin: 0;
+    margin-left: 10px;
 }
 
 #FormSignUp .form-input label {

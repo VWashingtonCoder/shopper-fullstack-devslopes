@@ -71,7 +71,7 @@ export function validateSignUpForm(formVals, accounts) {
         errors[name] = "Email already exists";
     } else if (name === "password") {
       if (!passwordValidation(val)) 
-        errors[name] = "Password doesn't meet requirements";
+        errors[name] = "Password isn't valid";
     } else if (name === "confirm") {
       if(val !== formVals.password) 
         errors[name] = "Passwords aren't matching";

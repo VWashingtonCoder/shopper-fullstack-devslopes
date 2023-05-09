@@ -10,7 +10,7 @@ const stockItems = new ProductService();
 const initAccounts = [{ 
   id: 0, 
   email: "admin@chgames.com", 
-  password: "Password$1",
+  passwordp: "Password$1",
   name: "Admin-sama"
 }];
 
