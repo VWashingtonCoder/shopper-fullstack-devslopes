@@ -5,6 +5,7 @@ import ProductService from "../services/services";
 import Navbar from "../components/Navbar/Navbar";
 import Homepage from "../pages/Homepage/Homepage";
 import AccountPage from "../pages/AccountPage/AccountPage";
+import Cart from "../pages/Cart/Cart";
 
 const stockItems = new ProductService();
 const initAccounts = [{ 
@@ -127,6 +128,9 @@ const ShopperApp = () => {
               updateActive={updateActiveAccount}
               navigate={navigatePage}
             />
+          )}
+          {page === "cart" && (
+            <Cart />
           )}
       </div>
     </div>
