@@ -5,26 +5,35 @@ import ProductService from "../services/services";
 import Navbar from "../components/Navbar/Navbar";
 import Homepage from "../pages/Homepage/Homepage";
 import AccountPage from "../pages/AccountPage/AccountPage";
+import Summary from "../pages/Summary/Summary";
 import Cart from "../pages/Cart/Cart";
 
+
 const stockItems = new ProductService();
-const initAccounts = [{ 
-  id: 0, 
-  email: "admin@chgames.com", 
-  passwordp: "Password$1",
-  name: "Admin-sama"
-}];
+const initAccounts = [
+  {
+    id: 0,
+    email: "admin@chgames.com",
+    password: "Password$1",
+    name: "Admin-sama",
+  },
+];
 
 const ShopperApp = () => {
   const [accounts, setAccounts] = useState(initAccounts);
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
-  const [page, setPage] = useState("login");
+  const [page, setPage] = useState("cart");
   const [payCard, setPayCard] = useState({});
   const [products, setProducts] = useState([]);
   const [shipAddress, setShipAddress] = useState({});
   const [stock, setStock] = useState([]);
   const [stockQtys, setStockQtys] = useState({});
+  const [totals, setTotals] = useState({
+    sub: 0,
+    ship: 0,
+    total: 0,
+  });
 
   useEffect(() => {
     stockItems
@@ -90,12 +99,12 @@ const ShopperApp = () => {
   };
 
   const addToAccounts = (newAcc) => {
-    setAccounts([ ...accounts, newAcc ]);
-  } 
+    setAccounts([...accounts, newAcc]);
+  };
 
   const updateActiveAccount = (account) => {
     setActiveAccount(account);
-  }
+  };
 
   return (
     <div id="ShopperApp">
@@ -107,21 +116,20 @@ const ShopperApp = () => {
           filter={filterProducts}
         />
       </div>
-      
-      <div className="page-container">
-        {page === "home" && (
-          <Homepage
-            products={products}
-            stockQty={stockQtys}
-            addToCart={addToCart}
-            updateQty={updateStockQtys}
-          />
-        )}
-      </div>
-      
-      <div className="page-container">
+
+      {(page === "home" || page === "login") && (
+        <div className="page-container">
+          {page === "home" && (
+            <Homepage
+              products={products}
+              stockQty={stockQtys}
+              addToCart={addToCart}
+              updateQty={updateStockQtys}
+            />
+          )}
+
           {page === "login" && (
-            <AccountPage 
+            <AccountPage
               accounts={accounts}
               addAccount={addToAccounts}
               active={activeAccount}
@@ -129,10 +137,22 @@ const ShopperApp = () => {
               navigate={navigatePage}
             />
           )}
-          {page === "cart" && (
-            <Cart />
-          )}
-      </div>
+        </div>
+      )}
+      
+      {(page === "cart" || page === "payShip") && (
+        <div className="page-container dual-pages">
+            {page === "cart" && (
+              <Cart cart={cart} />
+            )}
+
+            <Summary 
+              cartQty={cart.length}
+              page={page}
+              totals={totals}
+            />
+        </div>
+      )}
     </div>
   );
 };

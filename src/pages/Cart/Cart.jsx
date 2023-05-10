@@ -1,9 +1,14 @@
+import CartTable from "./CartTable";
+
 const Cart = (props) => {
+    const { cart } = props;
+    // console.log(cart)
+
+
     return (
         <div id="Cart">
-            Cart Page
+            <CartTable cart={cart}/>
         </div>
     );
 } 
-
 export default Cart;
