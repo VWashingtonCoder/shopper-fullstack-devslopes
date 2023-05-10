@@ -1,6 +1,5 @@
 import CartItem from "../../components/CartItem/CartItem";
 import { IoMdRemoveCircle } from "react-icons/io";
-import Cart from "./Cart";
 
 const CartTable = (props) => {
   const { cart } = props;
