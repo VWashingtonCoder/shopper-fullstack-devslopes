@@ -1,0 +1,46 @@
+#Summary {
+  border: 3px solid black;
+  padding: 20px;
+  width: 18vw;
+}
+
+#Summary .title,
+.summary-qty {
+  text-align: right;
+}
+
+.summary-qty {
+  font-size: 24px;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.summary-qty,
+.summary-totals {
+  font-weight: 700;
+}
+
+.summary-totals {
+  padding-top: 5px;
+}
+
+.total-text {
+  text-align: left;
+  margin-bottom: 7px;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-btn {
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 20px;
+  margin-top: 25px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}

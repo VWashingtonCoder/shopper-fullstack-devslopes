@@ -6,13 +6,11 @@ const CartTable = (props) => {
 
   return (
     <table id="CartTable">
-      <thead>
-        <tr className="label-row">
-          <th></th>
-          <th>Items</th>
-          <th>Qty</th>
-          <th>Subtotal</th>
-        </tr>
+      <thead className="label-row">
+          <th className="head-label remove"></th>
+          <th className="head-label items">Items</th>
+          <th className="head-label qty">Qty</th>
+          <th className="head-label subtotal">Subtotal</th>
       </thead>
       <tbody>
         {cart.map((item) => {
@@ -35,7 +33,7 @@ const CartTable = (props) => {
                 <input type="number" value={qty} />
               </td>
               <td className="cell price">
-                ${price * qty}
+                ${(price * qty).toFixed(2)}
               </td>
             </tr>
           );

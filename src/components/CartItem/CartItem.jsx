@@ -1,7 +1,7 @@
 const CartItem = (props) => {
     const { category, src, name, price } = props;
     return (
-        <div id="CartItem">
+        <div id="CartItem" className="flex-align-center">
             <div className="img-container">
                 <img src={src} alt="product" />
             </div>
@@ -10,7 +10,6 @@ const CartItem = (props) => {
                     {name}
                 </p>
                 <p className="item-text category">
-                    <span className="item-label">System: </span>
                     {category}
                 </p>
                 <p className="item-text price">

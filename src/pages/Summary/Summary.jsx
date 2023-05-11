@@ -1,3 +1,4 @@
+import "./Summary.css"
 const summaryTotalsLabels = [
   { id: "sub", label: "Subtotal: " },
   { id: "ship", label: "Shipping: " },
@@ -9,18 +10,23 @@ const Summary = (props) => {
 
   return (
     <div id="Summary">
-      <h2 className="summary-title">Summary</h2>
+      <h2 className="title">Summary</h2>
       {page === "cart" && (
         <p className="summary-qty">{cartQty} items in cart</p>
       )}
       <div className="summary-totals">
         {summaryTotalsLabels.map((item) => (
           <p key={item.id} className={`total-text ${item.id}`}>
-            <span className="total-label">{item.label}</span>${" "}
-            {totals[item.id] === 0 ? "-" : totals[item.id]}
+            <span className="total-label">{item.label}</span>
+            <span className="total-cost">
+              $ {totals[item.id] === 0 ? "-" : totals[item.id]}
+            </span>
           </p>
         ))}
       </div>
+      <button className="summary-btn">
+        {page === "cart" ? "Checkout" : ""}
+      </button>
     </div>
   );
 };
