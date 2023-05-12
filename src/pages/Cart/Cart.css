@@ -38,8 +38,10 @@
   width: 25%;
 }
 
-.cell.remove {
+.remove-btn {
   font-size: 40px;
+  background-color: transparent;
+  border: none;
 }
 
 .cell.qty input {

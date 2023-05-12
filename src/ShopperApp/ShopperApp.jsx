@@ -8,7 +8,6 @@ import AccountPage from "../pages/AccountPage/AccountPage";
 import Summary from "../pages/Summary/Summary";
 import Cart from "../pages/Cart/Cart";
 
-
 const stockItems = new ProductService();
 const initAccounts = [
   {
@@ -50,29 +49,135 @@ const ShopperApp = () => {
       });
   }, []);
 
+  function getCartSubtotal(cart) {
+    let subtotal = 0;
+
+    cart.forEach(item => 
+      subtotal = Number((subtotal + item.subtotal).toFixed(2))
+    );
+
+    return subtotal;
+  }
+
+  function getNewCart(data) {
+    const { cart, item, qty } = data;
+    const { key, prodName, category, imgSrc, price } = item;
+    const cartProductIdx = cart.findIndex((product) => product.key === key);
+    let newCart = [];
+    let newItem = {};
+    let cartSubtotal = 0;
+
+    if (cartProductIdx === -1) {
+      newItem = {
+        key: key,
+        name: prodName,
+        category: category,
+        imgSrc: imgSrc,
+        price: price,
+        qty: qty,
+        subtotal: Number((price * qty).toFixed(2)),
+      }
+      newCart = [...cart, newItem];
+    } else {
+      newCart = cart.map((item) => {
+        if (item.key === key){
+         item = { 
+          ...item, qty: qty, subtotal: Number((price * qty).toFixed(2)) 
+          };
+        } 
+        return item;
+      }); 
+    }
+
+  
+    // let cartSubtotal = 0;
+    // 
+    // if (cartProductIdx !== -1) {
+    //   newCart = cart.map((item) => {
+    //     if (item.key === key){
+    //       item.qty = stockQtys[key];
+    //       item.subtotal = itemSubtotal;
+    //     } 
+    //     return item;
+    //   }); 
+    // } else {
+    //   newCartItem = {
+    //     key: product.key,
+    //     name: product.prodName,
+    //     category: product.category,
+    //     imgSrc: product.imgSrc,
+    //     price: product.price,
+    //     qty: stockQtys[key],
+    //     subtotal: itemSubtotal,
+    //   };
+    //   newCart = [ ...cart, newCartItem ];
+    // }
+
+
+
+
+
+
+
+    // console.log(newCart);
+  }
+
   const addToCart = (e) => {
     const key = e.target.value;
     const product = products.find((item) => item.key === key);
-    const cartProductIdx = cart.findIndex((item) => item.key === key);
-    let newCartItem = {};
+    const newCartData = {
+      cart: cart,
+      item: product,
+      qty: stockQtys[key]
+    }
+    getNewCart(newCartData);
 
-    if (cartProductIdx === -1) {
-      newCartItem = {
-        key: product.key,
-        name: product.prodName,
-        category: product.category,
-        imgSrc: product.imgSrc,
-        price: product.price,
-        qty: stockQtys[key],
-      };
-      setCart([...cart, newCartItem]);
-    } else {
-      const newCart = cart.map((item) => {
-        if (item.key === key) item.qty = stockQtys[key];
+
+    
+    
+
+    // cartSubtotal = getCartSubtotal(newCart);
+
+
+
+
+    // setCart(newCart);
+    // setTotals({ 
+    //   ...totals,
+    //   sub: getCartSubtotal(newCart),
+    //   total:  
+    // })
+    
+  };
+
+  const updateItemQty = (e) => {
+    const { name, value } = e.target;
+    const newQty = Number(value);
+    let newSubtotal = 0;
+    let newCart = [];
+
+
+    if (newQty > 0) {
+      newCart = cart.map((item) => {
+        if (item.key === name) {
+          item.qty = newQty;
+          item.subtotal = Number((item.price * newQty).toFixed(2));
+        }
         return item;
       });
-      setCart(newCart);
+    } else {
+      newCart = cart.filter(item => item.key !== name);
     }
+    
+    newCart.forEach(
+      (item) => (newSubtotal = Number((newSubtotal + item.subtotal).toFixed(2)))
+    );
+
+    console.log(newSubtotal);
+
+    setCart(newCart);
+    setStockQtys({ ...stockQtys, [name]: Number(value) });
+    setTotals({ ...totals, sub: newSubtotal, total: newSubtotal });
   };
 
   const navigatePage = (e) => {
@@ -92,6 +197,19 @@ const ShopperApp = () => {
 
     setProducts(newProducts);
   };
+
+ 
+
+  const removeItemFromCart = ({target: {value}}) => {
+    const newCart = cart.filter(item => item.key !== value);
+    const subtotal = getCartSubtotal(newCart);
+    setCart(newCart);
+    setTotals({ 
+      ...totals,
+      sub: subtotal,
+      total: subtotal
+    })
+  }
 
   const updateStockQtys = (e) => {
     const { name, value } = e.target;
@@ -139,18 +257,18 @@ const ShopperApp = () => {
           )}
         </div>
       )}
-      
+
       {(page === "cart" || page === "payShip") && (
         <div className="page-container dual-pages">
-            {page === "cart" && (
-              <Cart cart={cart} />
-            )}
-
-            <Summary 
-              cartQty={cart.length}
-              page={page}
-              totals={totals}
+          {page === "cart" && (
+            <Cart 
+              cart={cart} 
+              remove={removeItemFromCart} 
+              updateQty={updateItemQty}
             />
+          )}
+
+          <Summary cartQty={cart.length} page={page} totals={totals} />
         </div>
       )}
     </div>
