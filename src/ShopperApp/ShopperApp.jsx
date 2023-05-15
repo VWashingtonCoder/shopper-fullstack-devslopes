@@ -90,6 +90,7 @@ const ShopperApp = () => {
     } else newProducts = stock;
 
     setProducts(newProducts);
+    setPage("home");
   };
 
   const updateStockQtys = (e) => {
