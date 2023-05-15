@@ -5,6 +5,15 @@ const initLoginForm = {
   password: "",
 };
 
+export const initAccounts = [
+  {
+    id: 0,
+    email: "admin@chgames.com",
+    password: "Password$1",
+    name: "Admin-sama",
+  },
+];
+
 export const initSignUpFormValues = {
   firstName: "",
   surname: "",

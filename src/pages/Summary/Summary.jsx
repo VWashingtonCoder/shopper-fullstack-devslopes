@@ -1,4 +1,4 @@
-import "./Summary.css"
+import "./Summary.css";
 const summaryTotalsLabels = [
   { id: "sub", label: "Subtotal: " },
   { id: "ship", label: "Shipping: " },
@@ -6,7 +6,7 @@ const summaryTotalsLabels = [
 ];
 
 const Summary = (props) => {
-  const { cartQty, page, totals } = props;
+  const { cartQty, page, totals, checkPay, disabled } = props;
 
   return (
     <div id="Summary">
@@ -24,8 +24,13 @@ const Summary = (props) => {
           </p>
         ))}
       </div>
-      <button className="summary-btn">
-        {page === "cart" ? "Checkout" : ""}
+      <button 
+        className="summary-btn" 
+        disabled={cartQty <= 0 ? true : disabled}
+        onClick={checkPay} 
+      >
+
+        {page === "cart" ? "Checkout" : "Pay"}
       </button>
     </div>
   );

@@ -3,7 +3,6 @@ import "./Cart.css";
 
 const Cart = (props) => {
     const { cart, remove, updateQty } = props;
-    // console.log(cart)
 
     return (
         <div id="Cart">

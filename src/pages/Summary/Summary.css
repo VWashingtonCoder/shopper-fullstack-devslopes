@@ -44,3 +44,7 @@
   border: none;
   border-radius: 10px;
 }
+
+.summary-btn:disabled {
+  background-color: grey;
+}

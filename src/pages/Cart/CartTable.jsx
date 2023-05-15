@@ -18,7 +18,7 @@ const CartTable = (props) => {
           return (
             <tr className="product-row" key={key}>
               <td className="cell remove">
-                <button className="remove-btn" value={key} onClick={remove}>
+                <button className="remove-btn" value="0" name={key} onClick={remove}>
                   <IoMdRemoveCircle className="icon" />
                 </button>
               </td>
