@@ -97,3 +97,59 @@ export const initSignUpStates = {
   disabled: true,
   showPW: { password: false, confirm: false },
 };
+
+export const selectOptions = {
+  state: [" ", "CA","CO","FL","GA","NY"],
+  country: [" ", "USA"]
+}
+
+export const inputsShipForm = [
+    { 
+        id: "shipName", 
+        label: "Name", 
+        max: 99,
+        min: 2, 
+        name: "name",
+        type: "text"
+    },
+    {
+        id: "shipAddress", 
+        label: "Address", 
+        max: 99,
+        min: 1, 
+        name: "address",
+        type: "text"
+    },
+    {
+        id: "shipCity", 
+        label: "City", 
+        max: 99,
+        min: 2, 
+        name: "city",
+        type: "text"
+    },
+    {
+        id: "shipState", 
+        label: "State", 
+        max: 99,
+        min: 0, 
+        name: "state",
+        type: "select"
+    },
+    {
+        id: "shipCountry", 
+        label: "Country", 
+        max: 99,
+        min: 0, 
+        name: "country",
+        type: "select"
+    },
+    {
+        id: "shipZip", 
+        label: "Zip Code", 
+        max: 7,
+        min: 5, 
+        name: "zip",
+        type: "text"
+    }
+];

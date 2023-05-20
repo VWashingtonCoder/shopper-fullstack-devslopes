@@ -13,6 +13,7 @@ import Homepage from "../pages/Homepage/Homepage";
 import AccountPage from "../pages/AccountPage/AccountPage";
 import Summary from "../pages/Summary/Summary";
 import Cart from "../pages/Cart/Cart";
+import PayShip from "../pages/PayShip/PayShip";
 
 const stockItems = new ProductService();
 
@@ -21,16 +22,16 @@ const ShopperApp = () => {
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
   const [cartQty, setCartQty] = useState(0);
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState("payShip"); // init: "home"
   const [payCard, setPayCard] = useState({});
   const [products, setProducts] = useState([]);
   const [shipAddress, setShipAddress] = useState({});
   const [stock, setStock] = useState([]);
   const [stockQtys, setStockQtys] = useState({});
   const [totals, setTotals] = useState({
-    sub: 0,
+    sub: 50.25,
     ship: 0,
-    total: 0,
+    total: 50.25,
   });
   const [summaryDisabled, setSummaryDisabled] = useState(false);
 
@@ -162,7 +163,9 @@ const ShopperApp = () => {
               updateQty={updateItemQty}
             />
           )}
-
+          {page === "payShip" && (
+            <PayShip />
+          )}
           <Summary
             cartQty={cartQty}
             page={page}
