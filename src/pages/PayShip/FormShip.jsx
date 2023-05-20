@@ -1,11 +1,6 @@
 import { inputsShipForm } from "../../data/constants";
 import FormInput from "../../components/FormInput/FormInput";
 
-const shipOptions = {
-  state: [" ", "CA", "CO", "FL", "GA", "NY"],
-  country: [" ", "USA"],
-};
-
 const FormShip = (props) => {
   const { formValues } = props;
   const { name, address, city, state, country, zip } = formValues;
@@ -23,7 +18,7 @@ const FormShip = (props) => {
         return inputHTMl;
       })}
 
-      <div className="ship-input-group">
+      <div className="input-group ship flex-align-center">
         {inputsShipForm.map((input) => {
           const { name } = input;
           let inputHTMl = <div></div>;

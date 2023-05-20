@@ -100,7 +100,33 @@ export const initSignUpStates = {
 
 export const selectOptions = {
   state: [" ", "CA","CO","FL","GA","NY"],
-  country: [" ", "USA"]
+  country: [" ", "USA"],
+  expMonth: [
+    "", 
+    "01-Jan", 
+    "02-Feb", 
+    "03-Mar", 
+    "04-Apr",
+    "05-May",
+    "06-Jun",
+    "07-Jul",
+    "08-Aug",
+    "09-Sep",
+    "10-Oct",
+    "11-Nov",
+    "12-Dec"
+  ],
+  expYear: [
+    "",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030"
+  ]
 }
 
 export const inputsShipForm = [
@@ -153,3 +179,38 @@ export const inputsShipForm = [
         type: "text"
     }
 ];
+
+export const payInputs = [
+  {
+    id: "payCardNo", 
+    label: "Card Number", 
+    max: 16,
+    min: 15, 
+    name: "cardNo",
+    type: "text"
+  },
+  {
+    id: "payMonth", 
+    label: "Exp Month", 
+    max: 99,
+    min: 1, 
+    name: "expMonth",
+    type: "select"
+  },
+  {
+    id: "payYear", 
+    label: "Exp Year", 
+    max: 99,
+    min: 1, 
+    name: "expYear",
+    type: "select"
+  },
+  {
+    id: "payCVV", 
+    label: "CVV", 
+    max: 4,
+    min: 3, 
+    name: "cvv",
+    type: "text"
+  }
+]

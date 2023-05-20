@@ -8,11 +8,11 @@ const FormInput = ({ input }) => {
       <label htmlFor={id}>{label}: </label>
       {type === "select" ? (
         <select id={id} name={name}>
-            {selectOptions[name].map((option) => (
-                <option key={option} value={option}>
-                    {option}
-                </option>
-            ))}
+          {selectOptions[name].map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
       ) : (
         <input id={id} name={name} max={max} min={min} type={type} />
