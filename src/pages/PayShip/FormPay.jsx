@@ -6,7 +6,6 @@ const FormPay = (props) => {
     const { formValues } = props;
     const { cardNo, cardType, expMonth, expYear, cvv } = formValues;
     const cardNoInput = payInputs[getInputIdx(payInputs, "cardNo")];
-    const cvvInput = payInputs[getInputIdx(payInputs, "cvv")];
   
     return (
         <form id="PayForm">
