@@ -130,3 +130,7 @@ export function getCartTotalQty(cart) {
   cart.forEach((item) => (cartQty = cartQty + item.qty));
   return cartQty;
 }
+
+export function getInputIdx(inputsArr, inputName) {
+  return inputsArr.findIndex(input => input.name === inputName);
+}

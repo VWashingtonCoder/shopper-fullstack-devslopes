@@ -4,7 +4,7 @@ const FormInput = ({ input }) => {
   const { id, label, max, min, name, type } = input;
 
   return (
-    <div key={id} className={`form-input ${name}`}>
+    <div key={id} className={`form-input ${name} flex-align-center`}>
       <label htmlFor={id}>{label}: </label>
       {type === "select" ? (
         <select id={id} name={name}>

@@ -1,9 +1,6 @@
 import { payInputs } from "../../data/constants";
+import { getInputIdx } from "../../data/helpers";
 import FormInput from "../../components/FormInput/FormInput";
-
-function getInputIdx(inputsArr, inputName) {
-    return inputsArr.findIndex(input => input.name === inputName);
-}
 
 const FormPay = (props) => {
     const { formValues } = props;
@@ -13,7 +10,7 @@ const FormPay = (props) => {
   
     return (
         <form id="PayForm">
-            <div className="form-input cardNo">
+            <div className="form-input-container cardNo">
                 <FormInput input={cardNoInput} />
                 <div className="card-type-img">
                     <img src="" alt="card-type" />
@@ -21,21 +18,16 @@ const FormPay = (props) => {
             </div>
             
         
-            <div className="input-group pay flex-align-center">
-                {payInputs.map(input => {
+            {payInputs.map(input => {
                     const { name } = input;
                     let inputHTMl = <div></div>;
                 
-                    if(name === "expMonth" || name === "expYear") {
+                    if(name === "expMonth" || name === "expYear" || name === "cvv") {
                         inputHTMl = (<FormInput input={input} />)
                     }
 
                     return (inputHTMl);
                 })}
-            </div>
-            
-            <FormInput input={cvvInput} />
-
         </form>
     );
 }

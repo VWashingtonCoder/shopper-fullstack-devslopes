@@ -183,7 +183,7 @@ export const inputsShipForm = [
 export const payInputs = [
   {
     id: "payCardNo", 
-    label: "Card Number", 
+    label: "Card #", 
     max: 16,
     min: 15, 
     name: "cardNo",
@@ -191,7 +191,7 @@ export const payInputs = [
   },
   {
     id: "payMonth", 
-    label: "Exp Month", 
+    label: "Exp Mo", 
     max: 99,
     min: 1, 
     name: "expMonth",
@@ -199,7 +199,7 @@ export const payInputs = [
   },
   {
     id: "payYear", 
-    label: "Exp Year", 
+    label: "EXP Yr", 
     max: 99,
     min: 1, 
     name: "expYear",

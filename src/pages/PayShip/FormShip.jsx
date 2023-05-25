@@ -7,29 +7,7 @@ const FormShip = (props) => {
 
   return (
     <form id="ShipForm">
-      {inputsShipForm.map((input) => {
-        const { name } = input;
-        let inputHTMl = <div></div>;
-
-        if (name === "name" || name === "address" || name === "city") {
-          inputHTMl = <FormInput input={input} />;
-        }
-
-        return inputHTMl;
-      })}
-
-      <div className="input-group ship flex-align-center">
-        {inputsShipForm.map((input) => {
-          const { name } = input;
-          let inputHTMl = <div></div>;
-
-          if (name === "state" || name === "country" || name === "zip") {
-            inputHTMl = <FormInput input={input} />;
-          }
-
-          return inputHTMl;
-        })}
-      </div>
+      {inputsShipForm.map(input => <FormInput input={input} />)}
     </form>
   );
 };
