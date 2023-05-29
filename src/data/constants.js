@@ -173,7 +173,7 @@ export const inputsShipForm = [
     {
         id: "shipZip", 
         label: "Zip Code", 
-        max: 7,
+        max: 10,
         min: 5, 
         name: "zip",
         type: "text"

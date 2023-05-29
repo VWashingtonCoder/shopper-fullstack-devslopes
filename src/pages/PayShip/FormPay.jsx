@@ -3,14 +3,19 @@ import { getInputIdx } from "../../data/helpers";
 import FormInput from "../../components/FormInput/FormInput";
 
 const FormPay = (props) => {
-    const { formValues } = props;
-    const { cardNo, cardType, expMonth, expYear, cvv } = formValues;
-    const cardNoInput = payInputs[getInputIdx(payInputs, "cardNo")];
+    const { errors, formValues, update } = props;
+    const cardNoKey = "cardNo"
+    const cardNoInput = payInputs[getInputIdx(payInputs, cardNoKey)];
   
     return (
         <form id="PayForm">
             <div className="form-input-container cardNo">
-                <FormInput input={cardNoInput} />
+                <FormInput 
+                    error={errors[cardNoKey]}
+                    input={cardNoInput}
+                    update={update}
+                    value={formValues[cardNoKey]} 
+                />
                 <div className="card-type-img">
                     <img src="" alt="card-type" />
                 </div>
@@ -20,9 +25,17 @@ const FormPay = (props) => {
             {payInputs.map(input => {
                     const { name } = input;
                     let inputHTMl = <div></div>;
-                
-                    if(name === "expMonth" || name === "expYear" || name === "cvv") {
-                        inputHTMl = (<FormInput input={input} />)
+            
+                    if(name !== cardNoKey) {
+                        inputHTMl = (
+                            <FormInput 
+                                key={input.id}
+                                error={errors[input.name]}
+                                input={input} 
+                                update={update}
+                                value={formValues[input.name]} 
+                            />
+                        )
                     }
 
                     return (inputHTMl);
