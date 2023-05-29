@@ -2,12 +2,13 @@ import { inputsShipForm } from "../../data/constants";
 import FormInput from "../../components/FormInput/FormInput";
 
 const FormShip = (props) => {
-  const { formValues } = props;
-  const { name, address, city, state, country, zip } = formValues;
+  const { errors, formValues, update } = props;
 
   return (
     <form id="ShipForm">
-      {inputsShipForm.map(input => <FormInput input={input} />)}
+      {inputsShipForm.map(input => ( 
+                                                                                                               
+      ))}
     </form>
   );
 };
