@@ -214,3 +214,10 @@ export const payInputs = [
     type: "text"
   }
 ]
+
+export const regexPattern = {
+  MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
+  VISA: /^4[0-9]{2,}$/,
+  DISCOVER: /^6(?:011|5[0-9]{2})[0-9]{3,}$/,
+  AMERICAN_EXPRESS: /^3[47][0-9]{5,}$/,
+};

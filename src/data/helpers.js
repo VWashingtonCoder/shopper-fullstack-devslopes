@@ -1,5 +1,28 @@
+import { regexPattern } from "./constants";
+
 function containsOnlyLetters(str) {
   return /^[A-Za-z]+$/.test(str);
+}
+
+function containsOnlyLettersSpaces(str) {
+  return /^[A-Za-z\s]+$/.test(str);
+}
+
+function capitalizeStr(str) {
+  const capitalFirstLetter = str.slice(0, 1).toUpperCase();
+  return capitalFirstLetter + str.slice(1);
+}
+
+function containsSimultaneousSpaces(str) {
+  return str.slice(-2) === "  ";
+}
+
+function containsValidZipCode(code) {
+  return /^[0-9]{5}(?:-[0-9]{4})?$/.test(code);
+}
+
+function containsNumbersOnly(str) {
+  return /^\d+$/.test(str);
 }
 
 function existingEmail(accounts, email) {
@@ -14,6 +37,24 @@ function passwordValidation(pass) {
   const regExp =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
   return regExp.test(pass);
+}
+
+function cardNumberValidation(cardNumber) {
+  let valid = false;
+  for (const card in regexPattern) {
+    if (cardNumber.replace(/[^\d]/g, "").match(regexPattern[card])) {
+      if (cardNumber) {
+        if (
+          cardNumber &&
+          /^[1-6]{1}[0-9]{14,15}$/i.test(
+            cardNumber.replace(/[^\d]/g, "").trim()
+          )
+        )
+          valid = true;
+      }
+    }
+  }
+  return valid;
 }
 
 export function generateStockArr(qty) {
@@ -132,5 +173,68 @@ export function getCartTotalQty(cart) {
 }
 
 export function getInputIdx(inputsArr, inputName) {
-  return inputsArr.findIndex(input => input.name === inputName);
+  return inputsArr.findIndex((input) => input.name === inputName);
+}
+
+export function findDebitCardType(cardNum) {
+  for (const card in regexPattern) {
+    if (cardNum.replace(/[^\d]/g, "").match(regexPattern[card])) return card;
+  }
+  return "";
+}
+
+export function maskDebitCardNum(cardNum) {
+  let mask = cardNum.split(" ").join("");
+
+  if (mask.length) mask = mask.match(new RegExp(".{1,4}", "g")).join(" ");
+
+  return mask;
+}
+
+export function validateFormValues(name, value) {
+  const valLength = value.length;
+  const capitalName = capitalizeStr(name);
+  let valid = true;
+  let errorText = "";
+
+  if (!value || value === " ") errorText = `${capitalName} is required`;
+  else if (name === "name" || name === "city") {
+    if (valLength < 2) {
+      errorText = `${capitalName} must include at least two characters`;
+    } else if (!containsOnlyLettersSpaces(value)) {
+      errorText = `${capitalName} can only include letters & one space`;
+      valid = false;
+    } else if (containsSimultaneousSpaces(value)) {
+      errorText = `${capitalName} can only include one space`;
+      valid = false;
+    }
+  } else if (name === "zip") {
+    if (valLength > 10) {
+      errorText = `${capitalName} code cannot be more than 10 characters`;
+      valid = false;
+    } else if (!containsValidZipCode(value)) {
+      errorText = `${capitalName} code must be valid`;
+    }
+  } else if (name === "cardNo") {
+    const cardNum = value.split(" ").join("");
+    if (!containsNumbersOnly(cardNum)) {
+      errorText = "Card number can only include numbers";
+      valid = false;
+    } else if (valLength > 20) {
+      errorText = "Card number can only have 16-17 digits max";
+      valid = false;
+    } else if (!cardNumberValidation(value)) {
+      errorText = "Card number must be valid";
+    }
+  } else if (name === "cvv") {
+    if (!containsNumbersOnly(value)) {
+      errorText = "CVV can only include numbers";
+      valid = false;
+    } else if (valLength > 4) {
+      errorText = "CVV can only have 3-4 digits max";
+      valid = false;
+    }
+  }
+
+  return { valid, errorText };
 }

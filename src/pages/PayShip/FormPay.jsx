@@ -1,9 +1,22 @@
 import { payInputs } from "../../data/constants";
 import { getInputIdx } from "../../data/helpers";
 import FormInput from "../../components/FormInput/FormInput";
+import AMEX_ICON from "../../assets/amex.png";
+import DISCOVER_ICON from "../../assets/discover.png";
+import MASTERCARD_ICON from "../../assets/masterCard.png";
+import VISA_ICON from "../../assets/visa.png"
+
+const cardTypeLogos = {
+    AMERICAN_EXPRESS: AMEX_ICON,
+    DISCOVER: DISCOVER_ICON,
+    MASTERCARD: MASTERCARD_ICON,
+    VISA: VISA_ICON
+}
+
 
 const FormPay = (props) => {
     const { errors, formValues, update } = props;
+    const { cardType } = formValues;
     const cardNoKey = "cardNo"
     const cardNoInput = payInputs[getInputIdx(payInputs, cardNoKey)];
   
@@ -17,7 +30,7 @@ const FormPay = (props) => {
                     value={formValues[cardNoKey]} 
                 />
                 <div className="card-type-img">
-                    <img src="" alt="card-type" />
+                    <img src={cardType ? cardTypeLogos[cardType] : ""} alt="card-type" />
                 </div>
             </div>
             
