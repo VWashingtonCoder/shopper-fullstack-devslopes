@@ -120,6 +120,10 @@ const ShopperApp = () => {
     setPage(nextPage);
   }
 
+  const handleSummaryDisabled = (disable) => {
+    setSummaryDisabled(disable);
+  }
+
   return (
     <div id="ShopperApp">
       <div className="navigation">
@@ -164,7 +168,10 @@ const ShopperApp = () => {
             />
           )}
           {page === "payShip" && (
-            <PayShip />
+            <PayShip 
+              enable={handleSummaryDisabled} 
+              sumEnabled={summaryDisabled} 
+            />
           )}
           <Summary
             cartQty={cartQty}

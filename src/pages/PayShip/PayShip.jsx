@@ -1,11 +1,12 @@
 import "./PayShip.css";
 import FormPay from "./FormPay";
 import FormShip from "./FormShip";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   validateFormValues,
   findDebitCardType,
   maskDebitCardNum,
+  checkFullForm
 } from "../../data/helpers";
 
 const initShipFormValues = {
@@ -25,27 +26,48 @@ const initPayFormValues = {
   cvv: "",
 };
 
-const PayShip = (props) => {
+const PayShip = ({ enable, sumEnabled }) => {
   const [shipFormValues, setShipFormValues] = useState(initShipFormValues);
   const [payFormValues, setPayFormValues] = useState(initPayFormValues);
   const [errors, setErrors] = useState({});
+  const [fullForms, setFullForms] = useState({ ship: false, pay: false });
+
+  useEffect(() => {
+    const { ship, pay } = fullForms;
+    if (sumEnabled === true 
+      && ship === true 
+      && pay === true
+    ) enable(false)
+    else if (sumEnabled === false 
+      && (ship === false 
+      || pay === false)
+    ) enable(true);
+  })
+
 
   const updateFormValues = (e) => {
     const { id, name, value } = e.target;
     const { valid, errorText } = validateFormValues(name, value);
+    let newFormValues = undefined;
 
     if (valid) {
-      id.includes("ship")
-        ? setShipFormValues({ ...shipFormValues, [name]: value })
-        : name !== "cardNo"
-        ? setPayFormValues({ ...payFormValues, [name]: value })
-        : setPayFormValues({
-            ...payFormValues,
-            cardType: findDebitCardType(value),
+      if (id.includes("ship")) {
+        newFormValues = { ...shipFormValues, [name]: value }; 
+        setShipFormValues(newFormValues);
+        setFullForms({ ...fullForms, ship: checkFullForm(newFormValues) });
+      } else {
+        if (name === "cardNo") {
+          newFormValues = { 
+            ...payFormValues, 
+            cardType: findDebitCardType(value), 
             [name]: maskDebitCardNum(value),
-          });
+          }
+        } else newFormValues = { ...payFormValues, [name]: value }
+        console.log(checkFullForm(newFormValues))
+        setPayFormValues(newFormValues);
+        setFullForms({ ...fullForms, pay: checkFullForm(newFormValues) });
+      }
     }
-
     setErrors({ ...errors, [name]: errorText });
   };
 

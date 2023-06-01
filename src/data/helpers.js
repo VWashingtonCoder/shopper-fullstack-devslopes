@@ -199,8 +199,8 @@ export function validateFormValues(name, value) {
 
   if (!value || value === " ") errorText = `${capitalName} is required`;
   else if (name === "name" || name === "city") {
-    if (valLength < 2) {
-      errorText = `${capitalName} must include at least two characters`;
+    if (valLength < 3) {
+      errorText = `${capitalName} must include at least three characters`;
     } else if (!containsOnlyLettersSpaces(value)) {
       errorText = `${capitalName} can only include letters & one space`;
       valid = false;
@@ -208,7 +208,12 @@ export function validateFormValues(name, value) {
       errorText = `${capitalName} can only include one space`;
       valid = false;
     }
-  } else if (name === "zip") {
+  } else if (name === "address" || name === "city") {
+    if (valLength < 3) {
+      errorText = `${capitalName} must include at least three characters`;
+    }
+  } 
+  else if (name === "zip") {
     if (valLength > 10) {
       errorText = `${capitalName} code cannot be more than 10 characters`;
       valid = false;
@@ -237,4 +242,24 @@ export function validateFormValues(name, value) {
   }
 
   return { valid, errorText };
+}
+
+
+export function checkFullForm(form) {
+  const formArray = Object.entries(form);
+  let fullForm = true;
+
+  formArray.forEach(entry => {
+    const [key, value] = entry;
+    if (key === "state" 
+      || key === "country" 
+      || key === "expMonth"
+      || key === "expYear" 
+    ) {
+      if (!value) fullForm = false;
+    } else if (key === "cardNo") {
+      if (value.length < 16) fullForm = false;
+    } else if (value.length < 3) fullForm = false;
+  })
+  return fullForm;
 }

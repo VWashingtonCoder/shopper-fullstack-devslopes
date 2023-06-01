@@ -134,7 +134,7 @@ export const inputsShipForm = [
         id: "shipName", 
         label: "Name", 
         max: 99,
-        min: 2, 
+        min: 3, 
         name: "name",
         type: "text"
     },
@@ -142,7 +142,7 @@ export const inputsShipForm = [
         id: "shipAddress", 
         label: "Address", 
         max: 99,
-        min: 1, 
+        min: 3, 
         name: "address",
         type: "text"
     },
@@ -150,7 +150,7 @@ export const inputsShipForm = [
         id: "shipCity", 
         label: "City", 
         max: 99,
-        min: 2, 
+        min: 3, 
         name: "city",
         type: "text"
     },
@@ -193,7 +193,7 @@ export const payInputs = [
     id: "payMonth", 
     label: "Exp Mo", 
     max: 99,
-    min: 1, 
+    min: 0, 
     name: "expMonth",
     type: "select"
   },
@@ -201,7 +201,7 @@ export const payInputs = [
     id: "payYear", 
     label: "EXP Yr", 
     max: 99,
-    min: 1, 
+    min: 0, 
     name: "expYear",
     type: "select"
   },
