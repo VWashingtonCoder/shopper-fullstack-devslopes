@@ -26,19 +26,27 @@ const initPayFormValues = {
   cvv: "",
 };
 
-const PayShip = ({ enable, sumEnabled }) => {
+const PayShip = (props) => {
+  const { 
+    enable, 
+    nextPage,
+    payEnabled,
+    updatePayShipInfo, 
+  } = props;
   const [shipFormValues, setShipFormValues] = useState(initShipFormValues);
   const [payFormValues, setPayFormValues] = useState(initPayFormValues);
   const [errors, setErrors] = useState({});
   const [fullForms, setFullForms] = useState({ ship: false, pay: false });
+  
+
 
   useEffect(() => {
     const { ship, pay } = fullForms;
-    if (sumEnabled === true 
+    if (payEnabled === true 
       && ship === true 
       && pay === true
     ) enable(false)
-    else if (sumEnabled === false 
+    else if (payEnabled === false 
       && (ship === false 
       || pay === false)
     ) enable(true);
@@ -63,13 +71,20 @@ const PayShip = ({ enable, sumEnabled }) => {
             [name]: maskDebitCardNum(value),
           }
         } else newFormValues = { ...payFormValues, [name]: value }
-        console.log(checkFullForm(newFormValues))
+  
         setPayFormValues(newFormValues);
         setFullForms({ ...fullForms, pay: checkFullForm(newFormValues) });
       }
     }
     setErrors({ ...errors, [name]: errorText });
   };
+
+  const pay = (e) => {
+    e.preventDefault();
+    const payShipInfo = { pay: payFormValues, ship: shipFormValues };
+    updatePayShipInfo(payShipInfo);
+    nextPage("confirm");
+  }
 
   return (
     <div id="PayShip">
@@ -89,6 +104,13 @@ const PayShip = ({ enable, sumEnabled }) => {
           update={updateFormValues}
         />
       </div>
+      <button 
+        className="checkout-btn summary-btn" 
+        disabled={payEnabled}
+        onClick={pay} 
+      >
+        Pay
+      </button>
     </div>
   );
 };

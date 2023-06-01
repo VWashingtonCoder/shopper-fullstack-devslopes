@@ -9,11 +9,14 @@
   text-align: right;
 }
 
-.summary-qty {
-  font-size: 24px;
+.cart-summary {
   border-bottom: 2px solid lightgray;
   padding-bottom: 15px;
   margin-bottom: 10px;
+}
+
+.summary-qty {
+  font-size: 24px;
 }
 
 .summary-qty,

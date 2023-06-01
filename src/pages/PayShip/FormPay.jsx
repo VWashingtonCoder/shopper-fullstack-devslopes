@@ -42,7 +42,7 @@ const FormPay = (props) => {
                     const { name } = input;
                     let inputHTMl = <div></div>;
             
-                    if(name !== cardNoKey) {
+                    if (name !== cardNoKey) {
                         inputHTMl = (
                             <FormInput 
                                 key={`PayInput-${idx}`}

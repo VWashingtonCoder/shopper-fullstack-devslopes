@@ -22,10 +22,8 @@ const ShopperApp = () => {
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
   const [cartQty, setCartQty] = useState(0);
-  const [page, setPage] = useState("payShip"); // init: "home"
-  const [payCard, setPayCard] = useState({});
+  const [page, setPage] = useState("home"); // init: "home"
   const [products, setProducts] = useState([]);
-  const [shipAddress, setShipAddress] = useState({});
   const [stock, setStock] = useState([]);
   const [stockQtys, setStockQtys] = useState({});
   const [totals, setTotals] = useState({
@@ -33,6 +31,8 @@ const ShopperApp = () => {
     ship: 0,
     total: 50.25,
   });
+  const [payShipInfo, setPayShipInfo] = useState({ pay: {}, ship: {} });
+
   const [summaryDisabled, setSummaryDisabled] = useState(false);
 
   useEffect(() => {
@@ -108,20 +108,18 @@ const ShopperApp = () => {
   };
 
   const checkoutPay = () => {
-    let nextPage = "";
-
-    if (page === "cart") {
-      nextPage = "payShip";
-      setSummaryDisabled(true);
-    } else if (page === "payShip") {
-      nextPage = "confirm"
-    }
-
-    setPage(nextPage);
+    setPage("payShip");
+    setSummaryDisabled(true);
   }
 
   const handleSummaryDisabled = (disable) => {
     setSummaryDisabled(disable);
+  }
+
+  const updatePayShipInfo = (info) => {
+    console.log(info);
+    const { pay, ship } = info;
+    setPayShipInfo(info);
   }
 
   return (
@@ -170,10 +168,13 @@ const ShopperApp = () => {
           {page === "payShip" && (
             <PayShip 
               enable={handleSummaryDisabled} 
-              sumEnabled={summaryDisabled} 
+              payEnabled={summaryDisabled}
+              updatePayShipInfo={updatePayShipInfo} 
+              nextPage={navigatePage}
             />
           )}
           <Summary
+            cartItems={cart}
             cartQty={cartQty}
             page={page}
             totals={totals}
