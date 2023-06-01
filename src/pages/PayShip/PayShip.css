@@ -35,7 +35,8 @@
 }
 
 .cardNo .card-type-img {
+  max-width: 50px;
   position: absolute;
-  left: 290px;
+  left: 330px;
   bottom: 8px;
-}
+} 

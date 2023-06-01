@@ -22,7 +22,7 @@ const FormPay = (props) => {
   
     return (
         <form id="PayForm">
-            <div className="form-input-container cardNo">
+            <div className="form-input-container cardNo flex-align-center">
                 <FormInput 
                     error={errors[cardNoKey]}
                     input={cardNoInput}
@@ -30,23 +30,26 @@ const FormPay = (props) => {
                     value={formValues[cardNoKey]} 
                 />
                 <div className="card-type-img">
-                    <img src={cardType ? cardTypeLogos[cardType] : ""} alt="card-type" />
+                    { cardType && (
+                        <img src={cardTypeLogos[cardType]} alt="card-type" />
+                    )}
+                    
                 </div>
             </div>
             
         
-            {payInputs.map(input => {
+            {payInputs.map((input, idx) => {
                     const { name } = input;
                     let inputHTMl = <div></div>;
             
                     if(name !== cardNoKey) {
                         inputHTMl = (
                             <FormInput 
-                                key={input.id}
-                                error={errors[input.name]}
+                                key={`PayInput-${idx}`}
+                                error={errors[name]}
                                 input={input} 
                                 update={update}
-                                value={formValues[input.name]} 
+                                value={formValues[name]} 
                             />
                         )
                     }
