@@ -33,7 +33,6 @@
   font-size: 20px;
   margin-bottom: 10px;
   border-bottom: 2px solid lightgray;
-  
 }
 
 .summary-items:last-child {
@@ -43,10 +42,9 @@
 
 .item-total {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 5px 0 8px;
 }
-
 
 .summary-totals {
   padding-top: 5px;

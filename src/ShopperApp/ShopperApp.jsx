@@ -14,6 +14,7 @@ import AccountPage from "../pages/AccountPage/AccountPage";
 import Summary from "../pages/Summary/Summary";
 import Cart from "../pages/Cart/Cart";
 import PayShip from "../pages/PayShip/PayShip";
+import Confirmation from "../pages/Confirmation/Confirmation";
 
 const stockItems = new ProductService();
 
@@ -22,14 +23,14 @@ const ShopperApp = () => {
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
   const [cartQty, setCartQty] = useState(0);
-  const [page, setPage] = useState("home"); // init: "home"
+  const [page, setPage] = useState("confirm"); // init: "home"
   const [products, setProducts] = useState([]);
   const [stock, setStock] = useState([]);
   const [stockQtys, setStockQtys] = useState({});
   const [totals, setTotals] = useState({
-    sub: 50.25,
+    sub: 0,
     ship: 0,
-    total: 50.25,
+    total: 0,
   });
   const [payShipInfo, setPayShipInfo] = useState({ pay: {}, ship: {} });
 
@@ -46,7 +47,7 @@ const ShopperApp = () => {
         }
       })
       .catch((err) => {
-        console.alert(err);
+        console.log(err);
       });
   }, []);
 
@@ -117,8 +118,6 @@ const ShopperApp = () => {
   }
 
   const updatePayShipInfo = (info) => {
-    console.log(info);
-    const { pay, ship } = info;
     setPayShipInfo(info);
   }
 
@@ -183,6 +182,13 @@ const ShopperApp = () => {
           />
         </div>
       )}
+
+      {page === "confirm" && (
+        <div className="page-container">
+          <Confirmation />
+        </div>
+      )}
+
     </div>
   );
 };
