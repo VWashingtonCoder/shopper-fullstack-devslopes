@@ -37,20 +37,20 @@ const Summary = (props) => {
             } = item;
 
             return(
-              <div key={`summary-${key}`}>
-                <CartItem 
+              <div key={`summary-${key}`} className="summary-items">
+                <CartItem
                   category={category}
                   src={imgSrc}
                   name={name}
                   price={price}
                 />
-                <div key={`total-${key}`} className="item-total flex-align-center">
+                <div key={`total-${key}`} className="item-total">
                   <div className="item-qty">
                     <span>Qty:</span>
-                    <span>{qty}</span>
+                    <span>{qty}_</span>
                   </div>
-                  <span className="item-total">
-                    {subtotal}
+                  <span className="item-subtotal">
+                    ${subtotal}
                   </span>
                 </div>
               </div>

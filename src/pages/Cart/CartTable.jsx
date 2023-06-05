@@ -28,6 +28,7 @@ const CartTable = (props) => {
                   src={imgSrc}
                   name={name}
                   price={price}
+                  
                 />
               </td>
               <td className="cell qty">

@@ -13,6 +13,8 @@
   border-bottom: 2px solid lightgray;
   padding-bottom: 15px;
   margin-bottom: 10px;
+  overflow-y: auto;
+  max-height: 55vh;
 }
 
 .summary-qty {
@@ -20,9 +22,31 @@
 }
 
 .summary-qty,
-.summary-totals {
+.summary-totals,
+.item-total {
   font-weight: 700;
 }
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid lightgray;
+  
+}
+
+.summary-items:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+.item-total {
+  display: flex;
+  justify-content: end;
+  margin: 5px 0 8px;
+}
+
 
 .summary-totals {
   padding-top: 5px;
