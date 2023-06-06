@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Confirmation.css";
 
 const randomConfirmNumbers = [
   "849503849",
@@ -44,12 +45,12 @@ const Confirmation = ({ cart, info, total }) => {
 
   return (
     <div id="ConfirmPage">
-      <h2>Thank you for your order!</h2>
+      <h2 className="confirm-title">Thank you for your order!</h2>
 
       <div className="section-container">
         <div className="confirm-section products">
           <h3 className="section-title">Your New Games</h3>
-          <div className="product-container">
+          <div className="product-container flex-align-center">
             {cart.map((item) => {
               return (
                 <div key={item.key} className="product-img">
@@ -75,24 +76,23 @@ const Confirmation = ({ cart, info, total }) => {
                 </p>
               </div>
               <p className="ship-info delivery">
-                * Ships In 3-5 Business Days / Delivered In 7-10 Business Days *
+                * Ships In 3-5 Business Days * <br />* Delivered In 7-10
+                Business Days *
               </p>
             </div>
           </div>
 
           <div className="confirm-section pay">
             <h3 className="section-title">Payment</h3>
-            {payInfo.map(info => (
-              <p 
-                key={info.key}
-                className={`pay-info ${info.key}`}
-              >
-                <span className="pay-label">{info.label}: </span>
-                <span className="pay-value">{info.value}</span>
-              </p>
-            ))}
+            <div className="payment-info">
+              {payInfo.map((info) => (
+                <p key={info.key} className={`pay-info ${info.key} flex-align-center`}>
+                  <span className="pay-label">{info.label}: </span>
+                  <span className="pay-value">{info.value}</span>
+                </p>
+              ))}
+            </div>
           </div>
-
         </div>
       </div>
     </div>
