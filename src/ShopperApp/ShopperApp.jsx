@@ -23,7 +23,7 @@ const ShopperApp = () => {
   const [activeAccount, setActiveAccount] = useState({});
   const [cart, setCart] = useState([]);
   const [cartQty, setCartQty] = useState(0);
-  const [page, setPage] = useState("confirm"); // init: "home"
+  const [page, setPage] = useState("home"); // init: "home"
   const [products, setProducts] = useState([]);
   const [stock, setStock] = useState([]);
   const [stockQtys, setStockQtys] = useState({});
@@ -185,10 +185,13 @@ const ShopperApp = () => {
 
       {page === "confirm" && (
         <div className="page-container">
-          <Confirmation />
+          <Confirmation 
+            cart={cart}
+            info={payShipInfo}
+            total={totals.total}  
+          />
         </div>
       )}
-
     </div>
   );
 };
