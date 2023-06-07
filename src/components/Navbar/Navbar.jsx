@@ -24,12 +24,11 @@ const Navbar = (props) => {
                 onClick={navigate}
               >
                 {icon}
-                {key !=="login" 
+                {key !== "login"
                   ? text
-                  :  key ==="login" && active.name === undefined
-                    ? text 
-                    : `${active.name}`
-                }
+                  : key === "login" && active.name === undefined
+                  ? text
+                  : `${active.name}`}
                 {key === "cart" && `${cartQty} Items`}
               </button>
             );

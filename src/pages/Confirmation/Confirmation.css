@@ -1,67 +1,68 @@
 #ConfirmPage {
-    padding: 0 50px;
+  padding: 0 50px;
 }
 
 .confirm-title {
-    font-size: 48px;
+  font-size: 48px;
 }
 
 .section-title {
-    font-size: 35px;
-    margin-bottom: 20px;
+  font-size: 35px;
+  margin-bottom: 20px;
 }
 
 .products .section-title {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .product-container {
-    justify-content: center;
-    margin: auto;
-    margin-bottom: 20px;
-    overflow-x: auto;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 20px;
+  overflow-x: auto;
 }
- 
+
 .confirm-section {
-    border: 5px solid lightgray;
+  border: 5px solid lightgray;
 }
 
 .confirm-section.products {
-    max-width: 80vw;
-    margin: auto;
-    margin-top: 30px
+  max-width: 80vw;
+  margin: auto;
+  margin-top: 30px;
 }
 
 .section-container.dual {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .section-container.dual .confirm-section {
-    width: 40%;
+  width: 40%;
 }
 
-.ship-info, .pay-info {
-    font-size: 24px;
-    line-height: 1.5;
+.ship-info,
+.pay-info {
+  font-size: 24px;
+  line-height: 1.5;
 }
 
 .address-info {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .ship-info.delivery {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .payment-info {
-    text-align: left;
-    width: 50%;
-    margin: auto;
+  text-align: left;
+  width: 50%;
+  margin: auto;
 }
 
 .pay-info .pay-label {
-    width: 170px
+  width: 170px;
 }

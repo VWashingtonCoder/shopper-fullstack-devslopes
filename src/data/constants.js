@@ -60,19 +60,19 @@ export const logSignKeys = [
 
 export const loginFormInputs = [
   {
-      key: "loginEmail", 
-      label: "Email", 
-      name: "email",
-      min: 0,
-      max: 99
+    key: "loginEmail",
+    label: "Email",
+    name: "email",
+    min: 0,
+    max: 99,
   },
   {
-      key: "loginPassword", 
-      label: "Password", 
-      name: "password",
-      min: 8,
-      max: 20
-  }
+    key: "loginPassword",
+    label: "Password",
+    name: "password",
+    min: 8,
+    max: 20,
+  },
 ];
 
 export const signUpInputs = [
@@ -99,13 +99,13 @@ export const initSignUpStates = {
 };
 
 export const selectOptions = {
-  state: [" ", "CA","CO","FL","GA","NY"],
+  state: [" ", "CA", "CO", "FL", "GA", "NY"],
   country: [" ", "USA"],
   expMonth: [
-    "", 
-    "01-Jan", 
-    "02-Feb", 
-    "03-Mar", 
+    "",
+    "01-Jan",
+    "02-Feb",
+    "03-Mar",
     "04-Apr",
     "05-May",
     "06-Jun",
@@ -114,106 +114,96 @@ export const selectOptions = {
     "09-Sep",
     "10-Oct",
     "11-Nov",
-    "12-Dec"
+    "12-Dec",
   ],
-  expYear: [
-    "",
-    "2023",
-    "2024",
-    "2025",
-    "2026",
-    "2027",
-    "2028",
-    "2029",
-    "2030"
-  ]
-}
+  expYear: ["", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"],
+};
 
 export const inputsShipForm = [
-    { 
-        id: "shipName", 
-        label: "Name", 
-        max: 99,
-        min: 3, 
-        name: "name",
-        type: "text"
-    },
-    {
-        id: "shipAddress", 
-        label: "Address", 
-        max: 99,
-        min: 3, 
-        name: "address",
-        type: "text"
-    },
-    {
-        id: "shipCity", 
-        label: "City", 
-        max: 99,
-        min: 3, 
-        name: "city",
-        type: "text"
-    },
-    {
-        id: "shipState", 
-        label: "State", 
-        max: 99,
-        min: 0, 
-        name: "state",
-        type: "select"
-    },
-    {
-        id: "shipCountry", 
-        label: "Country", 
-        max: 99,
-        min: 0, 
-        name: "country",
-        type: "select"
-    },
-    {
-        id: "shipZip", 
-        label: "Zip Code", 
-        max: 10,
-        min: 5, 
-        name: "zip",
-        type: "text"
-    }
+  {
+    id: "shipName",
+    label: "Name",
+    max: 99,
+    min: 3,
+    name: "name",
+    type: "text",
+  },
+  {
+    id: "shipAddress",
+    label: "Address",
+    max: 99,
+    min: 3,
+    name: "address",
+    type: "text",
+  },
+  {
+    id: "shipCity",
+    label: "City",
+    max: 99,
+    min: 3,
+    name: "city",
+    type: "text",
+  },
+  {
+    id: "shipState",
+    label: "State",
+    max: 99,
+    min: 0,
+    name: "state",
+    type: "select",
+  },
+  {
+    id: "shipCountry",
+    label: "Country",
+    max: 99,
+    min: 0,
+    name: "country",
+    type: "select",
+  },
+  {
+    id: "shipZip",
+    label: "Zip Code",
+    max: 10,
+    min: 5,
+    name: "zip",
+    type: "text",
+  },
 ];
 
 export const payInputs = [
   {
-    id: "payCardNo", 
-    label: "Card #", 
+    id: "payCardNo",
+    label: "Card #",
     max: 16,
-    min: 15, 
+    min: 15,
     name: "cardNo",
-    type: "text"
+    type: "text",
   },
   {
-    id: "payMonth", 
-    label: "Exp Mo", 
+    id: "payMonth",
+    label: "Exp Mo",
     max: 99,
-    min: 0, 
+    min: 0,
     name: "expMonth",
-    type: "select"
+    type: "select",
   },
   {
-    id: "payYear", 
-    label: "EXP Yr", 
+    id: "payYear",
+    label: "EXP Yr",
     max: 99,
-    min: 0, 
+    min: 0,
     name: "expYear",
-    type: "select"
+    type: "select",
   },
   {
-    id: "payCVV", 
-    label: "CVV", 
+    id: "payCVV",
+    label: "CVV",
     max: 4,
-    min: 3, 
+    min: 3,
     name: "cvv",
-    type: "text"
-  }
-]
+    type: "text",
+  },
+];
 
 export const regexPattern = {
   MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,

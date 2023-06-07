@@ -86,7 +86,10 @@ const Confirmation = ({ cart, info, total }) => {
             <h3 className="section-title">Payment</h3>
             <div className="payment-info">
               {payInfo.map((info) => (
-                <p key={info.key} className={`pay-info ${info.key} flex-align-center`}>
+                <p
+                  key={info.key}
+                  className={`pay-info ${info.key} flex-align-center`}
+                >
                   <span className="pay-label">{info.label}: </span>
                   <span className="pay-value">{info.value}</span>
                 </p>

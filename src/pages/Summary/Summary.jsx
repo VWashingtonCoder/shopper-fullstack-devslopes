@@ -2,15 +2,8 @@ import "./Summary.css";
 import CartItem from "../../components/CartItem/CartItem";
 
 const Summary = (props) => {
-  const { 
-    cartItems,
-    cartQty,
-    page, 
-    totals, 
-    checkPay, 
-    disabled 
-  } = props;
-  
+  const { cartItems, cartQty, page, totals, checkPay, disabled } = props;
+
   const summaryTotalsLabels = [
     { id: "sub", label: "Subtotal: " },
     { id: "ship", label: "Shipping: " },
@@ -24,19 +17,11 @@ const Summary = (props) => {
         {page === "cart" && (
           <p className="summary-qty">{cartQty} items in cart</p>
         )}
-        {page === "payShip" && (
-          cartItems.map(item => {
-            const { 
-              key, 
-              category, 
-              imgSrc, 
-              name, 
-              price,
-              qty,
-              subtotal  
-            } = item;
+        {page === "payShip" &&
+          cartItems.map((item) => {
+            const { key, category, imgSrc, name, price, qty, subtotal } = item;
 
-            return(
+            return (
               <div key={`summary-${key}`} className="summary-items">
                 <CartItem
                   category={category}
@@ -49,37 +34,32 @@ const Summary = (props) => {
                     <span>Qty:</span>
                     <span>{qty}_</span>
                   </div>
-                  <span className="item-subtotal">
-                    ${subtotal}
-                  </span>
+                  <span className="item-subtotal">${subtotal}</span>
                 </div>
               </div>
-            )
-          })
-        )}
+            );
+          })}
       </div>
-      
 
       <div className="summary-totals">
         {summaryTotalsLabels.map((item) => (
           <p key={item.id} className={`total-text ${item.id}`}>
             <span className="total-label">{item.label}</span>
             <span className="total-cost">
-              {totals[item.id] !== 0 
-                ? `$ ${totals[item.id]}` 
+              {totals[item.id] !== 0
+                ? `$ ${totals[item.id]}`
                 : item.id === "ship"
-                  ? "Free"
-                  : "$ -"
-              }
+                ? "Free"
+                : "$ -"}
             </span>
           </p>
         ))}
       </div>
       {page === "cart" && (
-        <button 
-          className="checkout-btn summary-btn" 
+        <button
+          className="checkout-btn summary-btn"
           disabled={cartQty <= 0 ? true : disabled}
-          onClick={checkPay} 
+          onClick={checkPay}
         >
           Checkout
         </button>

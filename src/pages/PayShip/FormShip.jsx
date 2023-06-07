@@ -6,13 +6,13 @@ const FormShip = (props) => {
 
   return (
     <form id="ShipForm">
-      {inputsShipForm.map((input, idx) => ( 
-        <FormInput 
+      {inputsShipForm.map((input, idx) => (
+        <FormInput
           key={`ShipInput-${idx}`}
           error={errors[input.name]}
-          input={input} 
+          input={input}
           update={update}
-          value={formValues[input.name]} 
+          value={formValues[input.name]}
         />
       ))}
     </form>

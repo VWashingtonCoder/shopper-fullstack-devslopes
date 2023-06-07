@@ -1,48 +1,48 @@
 #Navbar {
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    top: 0;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 .nav-top {
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: cornflowerblue;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: cornflowerblue;
 }
 
 .nav-head {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .icon.games {
-    color: blue;
+  color: blue;
 }
 
 .nav-menu {
-    width: 35rem;
-    justify-content: space-around;
-    position: relative;
+  width: 35rem;
+  justify-content: space-around;
+  position: relative;
 }
 
 .nav-menu .nav-btn {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .nav-bottom {
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    padding: 10px;
-    background-color: cornsilk;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  background-color: cornsilk;
 }
 
 .nav-bottom .nav-btn {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .nav-bottom .nav-btn:hover {
-    color: red;
+  color: red;
 }

@@ -6,7 +6,7 @@ import {
   validateFormValues,
   findDebitCardType,
   maskDebitCardNum,
-  checkFullForm
+  checkFullForm,
 } from "../../data/helpers";
 
 const initShipFormValues = {
@@ -27,31 +27,18 @@ const initPayFormValues = {
 };
 
 const PayShip = (props) => {
-  const { 
-    enable, 
-    nextPage,
-    payEnabled,
-    updatePayShipInfo, 
-  } = props;
+  const { enable, nextPage, payEnabled, updatePayShipInfo } = props;
   const [shipFormValues, setShipFormValues] = useState(initShipFormValues);
   const [payFormValues, setPayFormValues] = useState(initPayFormValues);
   const [errors, setErrors] = useState({});
   const [fullForms, setFullForms] = useState({ ship: false, pay: false });
-  
-
 
   useEffect(() => {
     const { ship, pay } = fullForms;
-    if (payEnabled === true 
-      && ship === true 
-      && pay === true
-    ) enable(false)
-    else if (payEnabled === false 
-      && (ship === false 
-      || pay === false)
-    ) enable(true);
-  })
-
+    if (payEnabled === true && ship === true && pay === true) enable(false);
+    else if (payEnabled === false && (ship === false || pay === false))
+      enable(true);
+  });
 
   const updateFormValues = (e) => {
     const { id, name, value } = e.target;
@@ -60,18 +47,18 @@ const PayShip = (props) => {
 
     if (valid) {
       if (id.includes("ship")) {
-        newFormValues = { ...shipFormValues, [name]: value }; 
+        newFormValues = { ...shipFormValues, [name]: value };
         setShipFormValues(newFormValues);
         setFullForms({ ...fullForms, ship: checkFullForm(newFormValues) });
       } else {
         if (name === "cardNo") {
-          newFormValues = { 
-            ...payFormValues, 
-            cardType: findDebitCardType(value), 
+          newFormValues = {
+            ...payFormValues,
+            cardType: findDebitCardType(value),
             [name]: maskDebitCardNum(value),
-          }
-        } else newFormValues = { ...payFormValues, [name]: value }
-  
+          };
+        } else newFormValues = { ...payFormValues, [name]: value };
+
         setPayFormValues(newFormValues);
         setFullForms({ ...fullForms, pay: checkFullForm(newFormValues) });
       }
@@ -84,7 +71,7 @@ const PayShip = (props) => {
     const payShipInfo = { pay: payFormValues, ship: shipFormValues };
     updatePayShipInfo(payShipInfo);
     nextPage("confirm");
-  }
+  };
 
   return (
     <div id="PayShip">
@@ -104,10 +91,10 @@ const PayShip = (props) => {
           update={updateFormValues}
         />
       </div>
-      <button 
-        className="checkout-btn summary-btn" 
+      <button
+        className="checkout-btn summary-btn"
         disabled={payEnabled}
-        onClick={pay} 
+        onClick={pay}
       >
         Pay
       </button>

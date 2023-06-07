@@ -212,8 +212,7 @@ export function validateFormValues(name, value) {
     if (valLength < 3) {
       errorText = `${capitalName} must include at least three characters`;
     }
-  } 
-  else if (name === "zip") {
+  } else if (name === "zip") {
     if (valLength > 10) {
       errorText = `${capitalName} code cannot be more than 10 characters`;
       valid = false;
@@ -244,22 +243,22 @@ export function validateFormValues(name, value) {
   return { valid, errorText };
 }
 
-
 export function checkFullForm(form) {
   const formArray = Object.entries(form);
   let fullForm = true;
 
-  formArray.forEach(entry => {
+  formArray.forEach((entry) => {
     const [key, value] = entry;
-    if (key === "state" 
-      || key === "country" 
-      || key === "expMonth"
-      || key === "expYear" 
+    if (
+      key === "state" ||
+      key === "country" ||
+      key === "expMonth" ||
+      key === "expYear"
     ) {
       if (!value) fullForm = false;
     } else if (key === "cardNo") {
       if (value.length < 16) fullForm = false;
     } else if (value.length < 3) fullForm = false;
-  })
+  });
   return fullForm;
 }

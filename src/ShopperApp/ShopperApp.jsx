@@ -111,15 +111,15 @@ const ShopperApp = () => {
   const checkoutPay = () => {
     setPage("payShip");
     setSummaryDisabled(true);
-  }
+  };
 
   const handleSummaryDisabled = (disable) => {
     setSummaryDisabled(disable);
-  }
+  };
 
   const updatePayShipInfo = (info) => {
     setPayShipInfo(info);
-  }
+  };
 
   return (
     <div id="ShopperApp">
@@ -165,10 +165,10 @@ const ShopperApp = () => {
             />
           )}
           {page === "payShip" && (
-            <PayShip 
-              enable={handleSummaryDisabled} 
+            <PayShip
+              enable={handleSummaryDisabled}
               payEnabled={summaryDisabled}
-              updatePayShipInfo={updatePayShipInfo} 
+              updatePayShipInfo={updatePayShipInfo}
               nextPage={navigatePage}
             />
           )}
@@ -185,11 +185,7 @@ const ShopperApp = () => {
 
       {page === "confirm" && (
         <div className="page-container">
-          <Confirmation 
-            cart={cart}
-            info={payShipInfo}
-            total={totals.total}  
-          />
+          <Confirmation cart={cart} info={payShipInfo} total={totals.total} />
         </div>
       )}
     </div>
