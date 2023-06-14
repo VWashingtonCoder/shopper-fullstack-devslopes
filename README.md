@@ -5,6 +5,7 @@ You are going to build a full-stack project. This is a critical portfolio piece 
 
 ## Developer Notes
 Test Account Credentials: email: admin@chgames.com / password: Password$1,
+Env to set: REACT_APP_PUBLIC_AUTHORIZATION = "pk_5169709b6a71f379a7e9f1b937260dfeb489e94cc3ca4"
 
 ## 📣 Getting Started
 You can use the interface and code you created in the Code Commerce app or you can build this all from scratch.
